@@ -7,7 +7,8 @@ import "./styles/App.css";
 function App() {
   return (
     <div className="App">
-      <h1>PixelMap Studio v1</h1>
+      <h1>PixelMap Studio</h1>
+      <p>Testing CI/CD with GitHub actions</p>
     </div>
   );
 }
