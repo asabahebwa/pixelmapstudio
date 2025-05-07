@@ -3,10 +3,8 @@ body {
   font-family: sans-serif, Arial, Helvetica;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* border: 1px solid blue; */
   justify-content: center;
   color: black;
-  /* height: 80vh; */
 }
 
 code {

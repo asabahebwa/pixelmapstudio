@@ -1,20 +1,6 @@
 .App {
   text-align: center;
-  /* width: 80vw; */
   color: #3a3c3e;
   position: relative;
   margin: 0;
-  /* border: 1px solid red; */
-}
-
-.location-and-daily-forecast {
-  /* border: 1px solid green; */
-  padding: 0rem 1rem;
-  /* background-image: url("../../public/bi.jpg"); */
-}
-
-@media screen and (max-width: 900px) {
-  .location-and-daily-forecast {
-    padding: 0rem 0.5rem;
-  }
 }

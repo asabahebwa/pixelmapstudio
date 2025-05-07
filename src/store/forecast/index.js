@@ -1,20 +1,20 @@
-const ADD_FORECAST = "ADD_FORECAST";
+// const ADD_BULK_FORECAST = "ADD_BULK_FORECAST";
 
-const defaultState = {};
+// const defaultState = {};
 
-export function addForecast(forecast) {
-  return {
-    type: ADD_FORECAST,
-    forecast,
-  };
-}
+// export function addBulkForecast(bulkForecast) {
+//   return {
+//     type: ADD_BULK_FORECAST,
+//     bulkForecast,
+//   };
+// }
 
-export const forecastReducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case ADD_FORECAST:
-      const newState = Object.assign({}, defaultState, action.forecast);
-      return newState;
-    default:
-      return state;
-  }
-};
+// export const bulkForecastReducer = (state = defaultState, action) => {
+//   switch (action.type) {
+//     case ADD_BULK_FORECAST:
+//       const newState = Object.assign({}, defaultState, action.bulkForecast);
+//       return newState;
+//     default:
+//       return state;
+//   }
+// };

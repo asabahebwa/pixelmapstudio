@@ -1,4 +1,4 @@
-name: weathersasa
+name: pixelmapstudio
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   deploy-to-digital-ocean-droplet:
     runs-on: ubuntu-latest
-    name: deploy weathersasa
+    name: deploy pixelmapstudio
     steps:
       - name: Checkout master
         uses: actions/checkout@master
@@ -18,4 +18,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
-          script: cd projects/weathersasa/ && git pull && npm run build && npm run deploy
+          script: cd projects/pixelmapstudio/ && git pull && npm run build && npm run deploy
