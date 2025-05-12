@@ -1,8 +1,7 @@
-// import { combineReducers } from "redux";
-// import { forecastReducer } from "./forecast/index";
+import { combineReducers } from "redux";
+import { bulkForecastReducer } from "./bulkForecast/index";
 
-// export const rootReducer = combineReducers({
-//   forecast: forecastReducer,
-//   bulkForecast: bulkForecastReducer,
-//   user: userReducer,
-// });
+export const rootReducer = combineReducers({
+  bulkForecast: bulkForecastReducer,
+  //   user: userReducer,
+});

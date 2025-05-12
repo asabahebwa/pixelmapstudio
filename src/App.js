@@ -1,15 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-// import { getBulkWeatherData } from "./services/forecast";
-// import { addBulkForecast } from "./store/bulkForecast/index";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage"; // Create this as your main page
+import BlogPage from "./pages/BlogPage";
+import ServicesPage from "./pages/ServicesPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import LocationMapsPage from "./pages/LocationMapsPage";
 import "./styles/App.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>PixelMap Studio</h1>
-      <p>Testing CI/CD with GitHub actions</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route
+          path="/projects/markers-and-infowindows"
+          element={<LocationMapsPage />}
+        />
+      </Routes>
+    </Router>
   );
 }
 

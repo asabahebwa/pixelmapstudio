@@ -1,9 +1,9 @@
 import { createStore, } from "redux";
-// import { rootReducer } from "./rootReducer";
+import { rootReducer } from "./rootReducer";
 
 export const store = (state = {}) => {
   return createStore(
-    // rootReducer,
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 };

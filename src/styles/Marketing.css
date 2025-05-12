@@ -1,0 +1,34 @@
+.marketing-wrapper {
+  position: relative;
+  margin-top: 930px;
+  padding: 140px 0px;
+  z-index: 2;
+  background-color: white;
+}
+
+section {
+}
+
+.content {
+  margin: auto;
+  max-width: calc(1100px + 6%);
+  padding: 0 3%;
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.content-header {
+  color: #293340;
+  font-size: 47px;
+  font-weight: 200;
+  line-height: 46px;
+  margin: 0 auto 20px;
+}
+
+.subheader--with-buttons {
+  color: #6d7784;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+  margin: 0 auto 75px;
+}

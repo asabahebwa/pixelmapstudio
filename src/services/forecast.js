@@ -1,6 +1,6 @@
 export const getBulkWeatherData = (locations) => {
   return fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=bulk&days=14&aqi=yes&alerts=no`,
+    `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=bulk&days=1&aqi=yes&alerts=no`,
     {
       method: "POST",
       headers: {
@@ -21,6 +21,7 @@ export const getBulkWeatherData = (locations) => {
       return response.json();
     })
     .then((data) => {
+      console.log("Fetch", data);
       return data;
     })
     .catch((error) => {

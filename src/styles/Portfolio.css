@@ -1,0 +1,137 @@
+/* Portfolio.css */
+.portfolio-wrapper {
+  position: relative;
+  margin-top: 930px;
+  padding: 140px 0px;
+  z-index: 2;
+  padding: 100px 0px;
+  background-color: #fff;
+  /* border: 1px solid red; */
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.portfolio-content {
+  margin: auto;
+  max-width: 1650px;
+  /* border: 1px solid green; */
+}
+
+.portfolio-header {
+  color: #293340;
+  font-size: 47px;
+  text-align: center;
+  font-weight: 200;
+  line-height: 46px;
+  margin: 0 auto 20px;
+  /* border: 1px solid red; */
+}
+
+.portfolio-description {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  /* border: 1px solid red; */
+}
+
+
+.portfolio-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 4rem;
+  /* border: 1px solid cyan; */
+  /* max-width: 1650px; */
+}
+
+.portfolio-item {
+  flex: 0 0 calc(33.333% - 60px); /* Three items per row with gap */
+  max-width: calc(33.333% - 60px);
+  background-color: #f7f9fb;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* border: 1px solid red; */
+}
+
+.portfolio-item:hover {
+  background-color: #ecf0f4;
+}
+
+.portfolio-item:hover .portfolio-info {
+  background-color: #ecf0f4;
+}
+
+.portfolio-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.portfolio-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  /* border: 1px solid green; */
+  /* position: relative; */
+  /* overflow: hidden; */
+  /* padding-bottom: 66.67%;  */
+}
+
+.portfolio-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .portfolio-image {
+  /* transform: scale(1.05); */
+}
+
+/* Portfolio info now at the bottom */
+.portfolio-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f9fb;
+  text-align: left;
+  /* border: 1px solid blue; */
+}
+
+.portfolio-info h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #293340;
+}
+
+.portfolio-info span {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Make it responsive */
+@media (max-width: 992px) {
+  .portfolio-item {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}

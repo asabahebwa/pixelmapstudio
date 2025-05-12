@@ -1,0 +1,133 @@
+.header-container {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  /* background-color: #0769df; */
+  transition: all 0.3s ease;
+  height: 70px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* border: 1px solid red; */
+}
+
+/* Scrolled header styles */
+.header-container.scrolled {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  /* border: 1px solid blue; */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left-header {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.left-header .logo a {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  /* border: 1px solid cyan; */
+}
+
+.left-header .brand-name {
+  font-size: 23px;
+  margin-left: 1rem;
+  /* border: 1px solid red; */
+  color: #fff;
+}
+
+.left-header .brand-name.scrolled {
+  color: #000;
+}
+
+.center-header {
+  /* border: 1px solid green; */
+  display: flex;
+  align-items: center;
+}
+
+.center-header .main-nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.center-header .main-nav ul li a {
+  margin: 0 1rem;
+  color: #9fc1ea;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.center-header .main-nav ul li a:hover {
+  color: #fff;
+}
+
+.center-header .main-nav ul li a.scrolled {
+  color: #75889e;
+}
+
+.center-header .main-nav ul li a.scrolled:hover {
+  color: #141414;
+}
+
+.right-header {
+  /* border: 1px solid yellow; */
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+/* Style the contact link */
+.right-header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.right-header .contact {
+  display: flex;
+  align-items: center;
+  color: #9fc1ea;
+  font-size: 14px;
+  padding: 0 30px;
+  height: 41px;
+  border: 1px solid transparent;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.right-header .contact:hover {
+  color: #fff;
+}
+
+.right-header .contact.scrolled {
+  display: flex;
+  align-items: center;
+  border-radius: 21px;
+  transition: color 0.3s ease;
+  color: #75889e;
+  padding: 0 30px;
+  height: 41px;
+  border: 1px solid #e2e4e6;
+}
+
+.right-header .contact.scrolled:hover {
+  color: #141414;
+}
