@@ -19,18 +19,18 @@ function Portfolio() {
     },
     {
       id: 2,
-      title: "Markers and InfoWindows",
+      title: "GeoTIFF Contours",
       category: "Mobile Apps",
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/geoTIFF.png",
       link: "#",
     },
     {
       id: 3,
-      title: "Markers and InfoWindows",
+      title: "Heatmap",
       category: "Branding",
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/heatmap.png",
       link: "#",
     },
     {

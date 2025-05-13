@@ -39,19 +39,17 @@
   /* border: 1px solid red; */
 }
 
-
 .portfolio-flex-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
   margin-top: 4rem;
-  /* border: 1px solid cyan; */
-  /* max-width: 1650px; */
+  max-width: 1650px;
 }
 
 .portfolio-item {
-  flex: 0 0 calc(33.333% - 60px); /* Three items per row with gap */
+  flex: 0 0 calc(33.333% - 60px); /* Three items per row by default for large screens */
   max-width: calc(33.333% - 60px);
   background-color: #f7f9fb;
   overflow: hidden;
@@ -91,6 +89,7 @@
 .portfolio-image {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 5px;
   transition: transform 0.5s ease;
 }
@@ -121,17 +120,23 @@
   color: #666;
 }
 
-/* Make it responsive */
-@media (max-width: 992px) {
+@media (max-width: 1280px) {
   .portfolio-item {
-    flex: 0 0 calc(50% - 20px);
-    max-width: calc(50% - 20px);
+    flex: 0 0 calc(50% - 60px); /* Two items per row with gap */
+    max-width: calc(50% - 60px);
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 980px) {
+  .portfolio-wrapper {
+    margin-top: 0px;
+  }
+}
+
+/* Keep your existing media queries for even smaller screens */
+@media (max-width: 800px) {
   .portfolio-item {
     flex: 0 0 100%;
-    max-width: 100%;
+    max-width: calc(100% - 60px);
   }
 }

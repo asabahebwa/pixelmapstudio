@@ -10,13 +10,7 @@ export default function Header() {
         <div className="pages-left-header">
           <div className="logo">
             <Link to="/">
-              <img
-                src={logo}
-                width={40}
-                height={40}
-                alt="logo-img"
-                className="logo-img"
-              />
+              <img src={logo} alt="logo-img" className="logo-img" />
               <span className="pages-brand-name">PixelMap</span>
             </Link>
           </div>
@@ -44,6 +38,24 @@ export default function Header() {
             Contact
           </Link>
         </div>
+      </div>
+      <div className="pages-mobile-nav">
+        <nav className="pages-main-nav">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="/services">Services</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   );

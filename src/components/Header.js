@@ -31,8 +31,6 @@ export default function Header() {
             <Link to="/">
               <img
                 src={logo}
-                width={40}
-                height={40}
                 alt="logo-img"
                 className="logo-img"
               />
@@ -76,6 +74,32 @@ export default function Header() {
             Contact
           </Link>
         </div>
+      </div>
+      <div className="mobile-nav">
+        <nav className="main-nav">
+          <ul>
+            <li>
+              <Link to="/" className={scrolled ? "scrolled" : ""}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog" className={scrolled ? "scrolled" : ""}>
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className={scrolled ? "scrolled" : ""}>
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className={scrolled ? "scrolled" : ""}>
+                About
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   );

@@ -1,5 +1,6 @@
 .hero-wrapper {
   position: fixed;
+  font-weight: 200;
   top: 0;
   left: 0;
   width: 100%;
@@ -10,14 +11,14 @@
 
 .hero-content {
   font-size: 66px;
-  font-weight: 200;
   color: white;
-  width: 100%;
+  width: 80%;
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 70px;
   margin-bottom: 240px;
+  line-height: 1.5;
   height: 620px;
   display: flex;
   align-items: center;
@@ -27,6 +28,11 @@
 
 .hero-message--constant {
   margin-right: 1rem;
+  white-space: nowrap;
+}
+.hero-message--with-type {
+  min-width: 380px;
+  /* border: 1px solid red; */
 }
 
 .hero-bottom-image {
@@ -36,9 +42,80 @@
   right: 0;
   height: 240px;
   opacity: 0.8;
-  background-image: url("../assets/pms.png"); /* Path to your image */
+  background-image: url("https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/pms.png"); /* Path to your image */
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100%;
   /* border: 1px solid red; */
+}
+
+@media (max-width: 980px) {
+  .hero-wrapper {
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-content {
+    height: 300px;
+    font-size: 55px;
+    margin: 100px 0px;
+  }
+
+  .hero-message--with-type {
+    min-width: 320px;
+  }
+
+  .hero-bottom-image {
+    position: relative;
+    background-image: url("https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/pmsm.png"); /* Path to your image */
+    /* background-position: bottom; */
+    background-repeat: no-repeat;
+    /* background-size: contain; */
+    display: block;
+    opacity: 0.8;
+    padding-bottom: calc(52.1% - 114px);
+    width: 100%;
+    height: auto;
+    /* border: 1px solid red; */
+  }
+}
+
+@media (max-width: 800px) {
+  .hero-content {
+    font-size: 45px;
+    margin: 70px 0px;
+    /* border: 1px solid cyan; */
+  }
+  .hero-message--with-type {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-content {
+    flex-direction: column;
+    margin: 70px 0px;
+    /* border: 1px solid cyan; */
+  }
+  .hero-message--with-type {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .hero-content {
+    height: 200px;
+    margin: 70px 0px;
+    /* border: 1px solid cyan; */
+  }
+  .hero-message--constant {
+    margin-right: 0.5rem;
+  }
+
+  .hero-bottom-image {
+    padding-bottom: calc(60% - 114px);
+  }
 }
