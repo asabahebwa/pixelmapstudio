@@ -29,11 +29,7 @@ export default function Header() {
         <div className="left-header">
           <div className="logo">
             <Link to="/">
-              <img
-                src={logo}
-                alt="logo-img"
-                className="logo-img"
-              />
+              <img src={logo} alt="logo-img" className="logo-img" />
               <span className={`brand-name ${scrolled ? "scrolled" : ""}`}>
                 PixelMap
               </span>
@@ -67,12 +63,12 @@ export default function Header() {
           </nav>
         </div>
         <div className="right-header">
-          <Link
-            to="/contact"
+          <a
+            href="mailto:lasabahebwa@gmail.com"
             className={`contact ${scrolled ? "scrolled" : ""}`}
           >
             Contact
-          </Link>
+          </a>
         </div>
       </div>
       <div className="mobile-nav">

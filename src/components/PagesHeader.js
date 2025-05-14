@@ -34,9 +34,9 @@ export default function Header() {
           </nav>
         </div>
         <div className="pages-right-header">
-          <Link to="/contact" className="pages-contact">
+          <a href="mailto:lasabahebwa@gmail.com" className="contact">
             Contact
-          </Link>
+          </a>
         </div>
       </div>
       <div className="pages-mobile-nav">
