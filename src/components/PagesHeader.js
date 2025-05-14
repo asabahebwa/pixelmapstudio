@@ -22,13 +22,13 @@ export default function Header() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/blog">Blog</Link>
+                <Link to="/">Blog</Link>
               </li>
               <li>
-                <Link to="/services">Services</Link>
+                <Link to="/">Services</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/">About</Link>
               </li>
             </ul>
           </nav>
@@ -46,13 +46,13 @@ export default function Header() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/">Blog</Link>
             </li>
             <li>
-              <Link to="/services">Services</Link>
+              <Link to="/">Services</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/">About</Link>
             </li>
           </ul>
         </nav>
