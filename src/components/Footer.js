@@ -62,17 +62,13 @@ function Footer() {
               <p className="footer-column-option">For Business</p>
               <p className="footer-column-option">For Partners</p>
               <p className="footer-column-option">For Advertising</p>
-              <p className="footer-column-option">Premium Subscription</p>
-              <p className="footer-column-option">Professional Subscription</p>
+              <p className="footer-column-option">For Developers</p>
             </div>
 
             <div className="column-four">
-              <p className="footer-column-heading">More</p>
-              <p className="footer-column-option">Warnings</p>
-              <p className="footer-column-option">Severe Weather</p>
-              <p className="footer-column-option">Sports</p>
-              <p className="footer-column-option">Travel</p>
-              <p className="footer-column-option">Space and Astronomy</p>
+              <p className="footer-column-heading">Contact</p>
+              <p className="footer-column-option">lasabahebwa@gmail.com</p>
+              <p className="footer-column-option">(+256) 785 759096</p>
             </div>
           </div>
         </div>
