@@ -306,8 +306,22 @@ const Maps = () => {
       case "Seoul":
         zoomThreshold = 4; // visible at zoom level 4+
         break;
+      case "Rome":
+      case "Cairo":
+      case "Manila":
+      case "Miami":
+      case "Vancouver":
+      case "Yellowknife":
+      case "Nuuk":
+      case "Moscow":
+      case "Sydney":
+      case "New Delhi":
+      case "Nairobi":
+      case "San Francisco":
+        zoomThreshold = 3; // visible at zoom level 3+
+        break;
       default:
-        zoomThreshold = 3; // All other cities only visible at closer zoom levels (7+)
+        zoomThreshold = 2; // All other cities only visible at closer zoom levels ()
     }
     return zoomThreshold;
   };

@@ -19,7 +19,7 @@ function Footer() {
               <p className="brand-name">PixelMap</p>
             </div>
 
-            <p className="brand-slogan">precise data-viz craftmanship</p>
+            <p className="brand-slogan">precise data-viz craftsmanship</p>
             <div className="brand-social-icons">
               <a
                 href="https://x.com"

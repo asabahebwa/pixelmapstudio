@@ -104,20 +104,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   background-color: #f7f9fb;
   text-align: left;
   font-weight: 400;
   /* border: 1px solid blue; */
 }
 
-.portfolio-info h3 {
+.portfolio-info {
+  display: flex;
+  flex-direction: column;
   margin: 0 0 8px;
   font-size: 18px;
   color: #293340;
+  /* border: 1px solid red; */
 }
 
-.portfolio-info span {
+.portfolio-info p {
+  padding: 0;
+  /* margin: 0; */
   font-size: 14px;
   color: #666;
 }

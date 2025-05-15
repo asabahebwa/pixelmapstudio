@@ -4,7 +4,7 @@ import "../styles/Portfolio.css";
 
 function Portfolio() {
   // Categories for portfolio filtering
-  const categories = ["All", "Google Maps", "Mobile Apps", "Branding", "UI/UX"];
+  const categories = ["React", "Google Maps", "Mapbox", "33", "ZingChart"];
   const [activeCategory, setActiveCategory] = useState("All");
 
   // Sample portfolio items - replace with your actual projects
@@ -13,6 +13,7 @@ function Portfolio() {
       id: 1,
       title: "Markers and InfoWindows",
       category: "Google Maps",
+      completed: true,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/temps.png",
       link: "/projects/markers-and-infowindows",
@@ -20,7 +21,8 @@ function Portfolio() {
     {
       id: 2,
       title: "GeoTIFF Contours",
-      category: "Mobile Apps",
+      category: "D3",
+      completed: false,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/geoTiff.png",
       link: "#",
@@ -28,7 +30,8 @@ function Portfolio() {
     {
       id: 3,
       title: "Heatmap",
-      category: "Branding",
+      category: "Google Maps",
+      completed: false,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/eHeatmap.png",
       link: "#",
@@ -36,7 +39,8 @@ function Portfolio() {
     {
       id: 4,
       title: "Choropleth Map",
-      category: "UI/UX",
+      category: "D3",
+      completed: false,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/chloropleth.png",
       link: "#",
@@ -45,6 +49,7 @@ function Portfolio() {
       id: 5,
       title: "Routes",
       category: "Google Maps",
+      completed: false,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/new_route.png",
       link: "#",
@@ -52,7 +57,8 @@ function Portfolio() {
     {
       id: 6,
       title: "Bubble Chart with Interactive Map",
-      category: "Mobile Apps",
+      category: "ZingChart",
+      completed: false,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/brazil.png",
       link: "#",
@@ -91,7 +97,7 @@ function Portfolio() {
         <div className="portfolio-flex-container">
           {filteredItems.map((item) => (
             <div className="portfolio-item" key={item.id}>
-              {item.id === 1 ? (
+              {item.completed ? (
                 <Link to={item.link} className="portfolio-link">
                   <div className="portfolio-image-container">
                     <img
@@ -100,25 +106,23 @@ function Portfolio() {
                       className="portfolio-image"
                     />
                   </div>
-
                   <div className="portfolio-info">
                     <p>{item.title}</p>
                   </div>
                 </Link>
               ) : (
-                <a href={item.link} className="portfolio-link">
+                <div className="portfolio-link">
                   <div className="portfolio-image-container">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="portfolio-image"
+                      className="portfolio-image coming-soon-image"
                     />
                   </div>
-
                   <div className="portfolio-info">
-                    <p>{item.title}</p>
+                    <p>{item.title}(Coming Soon)</p>
                   </div>
-                </a>
+                </div>
               )}
             </div>
           ))}
