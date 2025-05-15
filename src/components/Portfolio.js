@@ -14,7 +14,7 @@ function Portfolio() {
       title: "Markers and InfoWindows",
       category: "Google Maps",
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/temps.png",
       link: "/projects/markers-and-infowindows",
     },
     {
@@ -22,7 +22,7 @@ function Portfolio() {
       title: "GeoTIFF Contours",
       category: "Mobile Apps",
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/geoTIFF.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/geoTiff.png",
       link: "#",
     },
     {
@@ -30,55 +30,31 @@ function Portfolio() {
       title: "Heatmap",
       category: "Branding",
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/heatmap.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/eHeatmap.png",
       link: "#",
     },
     {
       id: 4,
-      title: "Markers and InfoWindows",
+      title: "Choropleth Map",
       category: "UI/UX",
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/chloropleth.png",
       link: "#",
     },
     {
       id: 5,
-      title: "Markers and InfoWindows",
+      title: "Routes",
       category: "Google Maps",
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/new_route.png",
       link: "#",
     },
     {
       id: 6,
-      title: "Markers and InfoWindows",
+      title: "Bubble Chart with Interactive Map",
       category: "Mobile Apps",
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
-      link: "#",
-    },
-    {
-      id: 7,
-      title: "Markers and InfoWindows",
-      category: "UI/UX",
-      image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
-      link: "#",
-    },
-    {
-      id: 8,
-      title: "Markers and InfoWindows",
-      category: "Google Maps",
-      image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
-      link: "#",
-    },
-    {
-      id: 9,
-      title: "Markers and InfoWindows",
-      category: "Mobile Apps",
-      image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/location_temps.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/brazil.png",
       link: "#",
     },
   ];
@@ -126,7 +102,7 @@ function Portfolio() {
                   </div>
 
                   <div className="portfolio-info">
-                    <h3>{item.title}</h3>
+                    <p>{item.title}</p>
                   </div>
                 </Link>
               ) : (
@@ -140,7 +116,7 @@ function Portfolio() {
                   </div>
 
                   <div className="portfolio-info">
-                    <h3>{item.title}</h3>
+                    <p>{item.title}</p>
                   </div>
                 </a>
               )}
