@@ -313,7 +313,6 @@ const Maps = () => {
       case "Vancouver":
       case "Yellowknife":
       case "Nuuk":
-      case "Moscow":
       case "Sydney":
       case "New Delhi":
       case "Nairobi":
