@@ -29,12 +29,12 @@ function Portfolio() {
     },
     {
       id: 3,
-      title: "Heatmap",
+      title: "Earthquake Magnitude Heatmap",
       category: "Google Maps",
-      completed: false,
+      completed: true,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/eHeatmap.png",
-      link: "#",
+      link: "/projects/earthquake-magnitude-heatmap",
     },
     {
       id: 4,

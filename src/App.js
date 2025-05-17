@@ -6,6 +6,7 @@ import ServicesPage from "./pages/ServicesPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LocationMapsPage from "./pages/LocationMapsPage";
+import HeatmapPage from "./pages/HeatmapPage";
 import "./styles/App.css";
 
 function App() {
@@ -20,6 +21,10 @@ function App() {
         <Route
           path="/projects/markers-and-infowindows"
           element={<LocationMapsPage />}
+        />
+        <Route
+          path="/projects/earthquake-magnitude-heatmap"
+          element={<HeatmapPage />}
         />
       </Routes>
     </Router>
