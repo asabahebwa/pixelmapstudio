@@ -42,11 +42,10 @@
   right: 0;
   height: 240px;
   opacity: 0.8;
-  background-image: url("https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/pmsb.png"); /* Path to your image */
+  background-image: url("https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/pmsm.png"); /* Path to your image */
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100%;
-  /* border: 1px solid red; */
 }
 
 @media (max-width: 980px) {
