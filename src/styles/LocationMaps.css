@@ -1,5 +1,9 @@
 .maps-container {
-  /* background-color: white; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid red; */
+  height: calc(100vh - 70px);
 }
 
 /* Target the inner content of the info window */
@@ -80,4 +84,11 @@
   width: 100% !important;
   height: 20%;
   /* border: 1px solid red; */
+}
+
+@media (max-width: 980px) {
+  .maps-container {
+    height: calc(100vh - 130px);
+    /* border: 1px solid red; */
+  }
 }

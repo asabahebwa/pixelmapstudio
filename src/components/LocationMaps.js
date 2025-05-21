@@ -424,7 +424,6 @@ const Maps = () => {
     <div className="maps-container">
       <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <Map
-          style={{ width: "auto", height: "900px" }}
           mapId="DEMO_MAP_ID"
           disableDefaultUI={false}
           mapTypeControl={false}

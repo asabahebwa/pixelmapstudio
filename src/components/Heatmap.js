@@ -255,7 +255,6 @@ const App = () => {
     <div className="maps-container">
       <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <Map
-          style={{ width: "auto", height: "900px" }}
           defaultCenter={{ lat: 40.7749, lng: -130.4194 }}
           defaultZoom={3}
           disableDefaultUI={false}

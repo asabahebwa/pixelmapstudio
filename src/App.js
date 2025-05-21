@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LocationMapsPage from "./pages/LocationMapsPage";
 import HeatmapPage from "./pages/HeatmapPage";
+import WorldCupPage from "./pages/WorldCupPage"; // Import the D3Page component
 import ScrollToTop from "./components/ScrollToTop"; // Import the ScrollToTop component
 import "./styles/App.css";
 
@@ -28,6 +29,7 @@ function App() {
             path="/projects/earthquake-magnitude-heatmap"
             element={<HeatmapPage />}
           />
+          <Route path="/projects/fifa-world-cup" element={<WorldCupPage />} />
         </Routes>
       </ScrollToTop>
     </Router>

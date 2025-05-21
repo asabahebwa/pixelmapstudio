@@ -47,12 +47,12 @@ function Portfolio() {
     },
     {
       id: 5,
-      title: "Routes",
+      title: "Historical FIFA world cup geo map",
       category: "Google Maps",
       completed: false,
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/new_route.png",
-      link: "#",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/fifawc.png",
+      link: "/projects/fifa-world-cup",
     },
     {
       id: 6,
