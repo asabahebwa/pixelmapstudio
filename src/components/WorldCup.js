@@ -1,18 +1,31 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import "../styles/WorldCup.css"; // Import your CSS file for styling
-import { use } from "react";
 
 function WorldCup() {
-  const [geoData, setGeoData] = React.useState(null);
-  const [worldCupData, setWorldCupData] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const [geoData, setGeoData] = useState(null);
+  const [worldCupData, setWorldCupData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+      setHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const chartRef = useRef(null);
-
-  const width = 1200;
-  const height = 650;
 
   useEffect(() => {
     // Clear any existing SVG before creating a new one
@@ -28,17 +41,36 @@ function WorldCup() {
       .then((responses) => Promise.all(responses.map((resp) => resp.json())))
       .then(([geoData, worldCupData]) => {
         setGeoData(geoData);
-        console.log("geoData  --->", geoData);
-        console.log("cupData  --->", worldCupData);
         setWorldCupData(worldCupData);
 
         setLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setError(true);
+      });
   }, []);
 
   useEffect(() => {
     if (!geoData || !worldCupData) return;
+
+    console.log(worldCupData);
+
+    d3.select(chartRef.current).selectAll("svg").remove();
+
+    // Specify the chart’s dimensions.
+    const width = 928;
+    const marginTop = 46;
+    const height = width / 2 + marginTop;
+
+    // Fit the projection.
+    const projection = d3.geoEqualEarth().fitExtent(
+      [
+        [2, marginTop + 2],
+        [width - 2, height],
+      ],
+      { type: "Sphere" }
+    );
+    const path = d3.geoPath(projection);
 
     d3.select(chartRef.current).selectAll("svg").remove();
 
@@ -47,16 +79,19 @@ function WorldCup() {
       .append("svg")
       .attr("width", width)
       .attr("height", height)
-      .append("g");
+      .attr("viewBox", [0, 0, width, height])
+      .attr("style", "max-width: 100%; height: auto;");
 
-    const projection = d3
-      .geoMercator()
-      .scale(130)
-      .translate([width / 2, height / 1.4]);
+    // Add sphere with black border
+    svg
+      .append("path")
+      .datum({ type: "Sphere" })
+      .attr("fill", "#f8f9fa") // Light background color for oceans
+      .attr("stroke", "#000") // Black border around the globe
+      .attr("stroke-width", 1) // Border width
+      .attr("d", path);
 
-    const path = d3.geoPath().projection(projection);
-
-    const map = svg
+    svg
       .selectAll("path")
       .data(geoData.features)
       .enter()
@@ -66,48 +101,64 @@ function WorldCup() {
       .style("stroke", "black")
       .style("stroke-width", 0.5);
 
-    // const nested = d3
-    //   .nest()
-    //   .key((d) => d.year)
-    //   .rollup((leaves) => {
-    //     const total = d3.sum(leaves, (d) => d.attendance);
-    //     const coords = leaves.map((d) => projection([+d.long, +d.lat]));
-    //     const center_x = d3.mean(coords, (d) => d[0]);
-    //     const center_y = d3.mean(coords, (d) => d[1]);
-    //     return {
-    //       attendance: total,
-    //       x: center_x,
-    //       y: center_y,
-    //     };
-    //   })
-    //   .entries(worldCupData);
+    const nested = Array.from(
+      d3.rollup(
+        worldCupData,
+        (v) => ({
+          attendance: d3.sum(v, (d) => +d.attendance),
+          x: d3.mean(v, (d) => projection([+d.long, +d.lat])[0]),
+          y: d3.mean(v, (d) => projection([+d.long, +d.lat])[1]),
+          country: v[0].home,
+        }),
+        (d) => d.year
+      ),
+      ([key, value]) => ({ key, value })
+    );
 
-    // const attendance_extent = d3.extent(nested, (d) => d.value["attendance"]);
+    console.log(nested);
+    // Calculate the extent of attendance for scaling bubble sizes
 
-    // const rScale = d3.scaleSqrt().domain(attendance_extent).range([0, 8]);
-    // svg
-    //   .append("g")
-    //   .attr("class", "bubble")
-    //   .selectAll("circle")
-    //   .data(
-    //     nested.sort(function (a, b) {
-    //       return b.value["attendance"] - a.value["attendance"];
-    //     })
-    //   )
-    //   .enter()
-    //   .append("circle")
-    //   .attr("fill", "rgb(247, 148, 42)")
-    //   .attr("cx", (d) => d.value["x"])
-    //   .attr("cy", (d) => d.value["y"])
-    //   .attr("r", (d) => rScale(d.value["attendance"]))
-    //   .attr("stroke", "black")
-    //   .attr("stroke-width", 0.7)
-    //   .attr("opacity", 0.7);
+    const attendance_extent = d3.extent(nested, (d) => d.value["attendance"]);
+
+    const rScale = d3.scaleSqrt().domain(attendance_extent).range([0, 8]);
+
+    // Draw bubbles
+    svg
+      .append("g")
+      .attr("class", "bubble")
+      .selectAll("circle")
+      .data(
+        nested.sort(function (a, b) {
+          return b.value["attendance"] - a.value["attendance"];
+        })
+      )
+      .enter()
+      .append("circle")
+      .attr("fill", "rgb(247, 148, 42)")
+      .attr("cx", (d) => d.value["x"])
+      .attr("cy", (d) => d.value["y"])
+      .attr("r", (d) => rScale(d.value["attendance"]))
+      .attr("stroke", "black")
+      .attr("stroke-width", 0.7)
+      .attr("opacity", 0.7)
+      .append("title")
+      .text((d) => {
+        const formattedAttendance = d3.format(",")(d.value.attendance);
+        return `${d.key} - ${d.value.country}\nAttendance: ${formattedAttendance}`;
+      });
   }, [geoData, worldCupData]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="worldcup-loading">Loading...</div>;
   }
+  if (error) {
+    return (
+      <div className="worldcup-error">
+        Error loading data. Please try again later.
+      </div>
+    );
+  }
+
   return <div ref={chartRef} className="worldcup-container"></div>;
 }
 

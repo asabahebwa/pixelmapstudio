@@ -1,15 +1,23 @@
 .worldcup-container {
   display: flex;
-  /* flex-direction: ; */
   align-items: center;
   justify-content: center;
   /* border: 1px solid red; */
   height: calc(100vh - 70px);
+  overflow-x: auto;
 }
 
-@media (max-width: 980px) {
-  .maps-container {
-    height: calc(100vh - 130px);
-    /* border: 1px solid red; */
-  }
+.worldcup-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: calc(100vh - 70px);
+}
+
+.world-cup-svg {
+  /* border: 1px solid green; */
+}
+
+@media (max-width: 768px) {
 }

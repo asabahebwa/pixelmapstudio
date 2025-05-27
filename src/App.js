@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LocationMapsPage from "./pages/LocationMapsPage";
 import HeatmapPage from "./pages/HeatmapPage";
+import LifeExpectancyPage from "./pages/LifeExpectancyPage"; // Import the LifeExpectancy component
 import WorldCupPage from "./pages/WorldCupPage"; // Import the D3Page component
 import ScrollToTop from "./components/ScrollToTop"; // Import the ScrollToTop component
 import "./styles/App.css";
@@ -30,6 +31,10 @@ function App() {
             element={<HeatmapPage />}
           />
           <Route path="/projects/fifa-world-cup" element={<WorldCupPage />} />
+          <Route
+            path="/projects/health-adjusted-life-expectancy"
+            element={<LifeExpectancyPage />}
+          />
         </Routes>
       </ScrollToTop>
     </Router>

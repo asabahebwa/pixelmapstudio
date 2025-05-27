@@ -20,13 +20,14 @@ function Portfolio() {
     },
     {
       id: 2,
-      title: "GeoTIFF Contours",
-      category: "D3",
-      completed: false,
+      title: "Health-adjusted Life Expectancy",
+      category: "ZingChart",
+      completed: true,
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/geoTiff.png",
-      link: "#",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/hle.png",
+      link: "/projects/health-adjusted-life-expectancy",
     },
+
     {
       id: 3,
       title: "Earthquake Magnitude Heatmap",
@@ -37,30 +38,31 @@ function Portfolio() {
       link: "/projects/earthquake-magnitude-heatmap",
     },
     {
-      id: 4,
-      title: "Choropleth Map",
-      category: "D3",
-      completed: false,
-      image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/chloropleth.png",
-      link: "#",
-    },
-    {
       id: 5,
       title: "Historical FIFA world cup geo map",
       category: "Google Maps",
-      completed: false,
+      completed: true,
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/fifawc.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/fifaewc.png",
       link: "/projects/fifa-world-cup",
     },
     {
-      id: 6,
-      title: "Bubble Chart with Interactive Map",
-      category: "ZingChart",
+      id: 5,
+      title: "Personal injury road accidents in GB from 1979",
+      category: "D3",
       completed: false,
       image:
-        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/brazil.png",
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/gba.png",
+      link: "#",
+    },
+
+    {
+      id: 6,
+      title: "Uber pick up locations in New York City",
+      category: "D3",
+      completed: false,
+      image:
+        "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/upl.png",
       link: "#",
     },
   ];

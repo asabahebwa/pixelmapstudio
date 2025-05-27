@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useMemo } from "react";
+import { useMapsLibrary } from "@vis.gl/react-google-maps";
 import "../styles/LocationMaps.css";
 
 import {
@@ -59,6 +61,74 @@ const CustomLocationsInfoWindow = ({ poi, getTempColor }) => {
   );
 };
 
+const RainfallHeatmap = ({ locations, visible = true }) => {
+  const map = useMap();
+  const visualization = useMapsLibrary("visualization");
+
+  const heatmap = useMemo(() => {
+    if (!visualization) return null;
+
+    try {
+      return new window.google.maps.visualization.HeatmapLayer({
+        data: [],
+        map: null,
+        radius: 20,
+        opacity: 0.7,
+        dissipating: true,
+        gradient: [
+          "rgba(0, 255, 255, 0)",
+          "rgba(0, 255, 255, 1)",
+          "rgba(0, 191, 255, 1)",
+          "rgba(0, 127, 255, 1)",
+          "rgba(0, 63, 255, 1)",
+          "rgba(0, 0, 255, 1)",
+          "rgba(0, 0, 223, 1)",
+          "rgba(0, 0, 191, 1)",
+          "rgba(0, 0, 159, 1)",
+          "rgba(0, 0, 127, 1)",
+        ], // Blue gradient for rainfall
+      });
+    } catch (error) {
+      console.error("Error creating heatmap:", error);
+      return null;
+    }
+  }, [visualization]);
+
+  // Update heatmap data when locations change
+  useEffect(() => {
+    if (!heatmap || !visualization || !locations) return;
+
+    try {
+      const heatmapData = locations.map((location) => {
+        return {
+          location: new visualization.LatLng(
+            location.location.lat,
+            location.location.lng
+          ),
+          weight: location.rainfall / 100, // Scale rainfall to appropriate weight
+        };
+      });
+
+      heatmap.setData(heatmapData);
+    } catch (error) {
+      console.error("Error setting heatmap data:", error);
+    }
+  }, [heatmap, locations, visualization]);
+
+  // Toggle heatmap visibility
+  useEffect(() => {
+    if (!heatmap || !map) return;
+
+    heatmap.setMap(visible ? map : null);
+
+    return () => {
+      if (heatmap) heatmap.setMap(null);
+    };
+  }, [heatmap, map, visible]);
+
+  return null;
+};
+
 const Maps = () => {
   const [zoom, setZoom] = useState(3);
 
@@ -66,6 +136,7 @@ const Maps = () => {
     {
       key: "San Francisco",
       temp: 13,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 37.775,
         lng: -122.418,
@@ -74,6 +145,7 @@ const Maps = () => {
     {
       key: "Nairobi",
       temp: 22,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: -1.283,
         lng: 36.817,
@@ -82,6 +154,7 @@ const Maps = () => {
     {
       key: "Doha",
       temp: 33,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 25.287,
         lng: 51.533,
@@ -90,6 +163,7 @@ const Maps = () => {
     {
       key: "Moscow",
       temp: 6,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 55.752,
         lng: 37.616,
@@ -98,6 +172,7 @@ const Maps = () => {
     {
       key: "New York",
       temp: 24,
+      rainfall: 2500, // Annual rainfall in mm
       location: {
         lat: 40.712776,
         lng: -74.005974,
@@ -106,6 +181,7 @@ const Maps = () => {
     {
       key: "San Paulo",
       temp: 25,
+      rainfall: 250, // Annual rainfall in mm
       location: {
         lat: -23.533,
         lng: -46.617,
@@ -114,6 +190,7 @@ const Maps = () => {
     {
       key: "Rome",
       temp: 23,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 41.9,
         lng: 12.483,
@@ -122,6 +199,7 @@ const Maps = () => {
     {
       key: "Madrid",
       temp: 19,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 40.4,
         lng: -3.683,
@@ -130,6 +208,7 @@ const Maps = () => {
     {
       key: "Kyiv",
       temp: 13,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 50.433,
         lng: 30.517,
@@ -138,6 +217,7 @@ const Maps = () => {
     {
       key: "Berlin",
       temp: 15,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 52.517,
         lng: 13.4,
@@ -146,6 +226,7 @@ const Maps = () => {
     {
       key: "Cairo",
       temp: 40,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 30.05,
         lng: 31.25,
@@ -154,6 +235,7 @@ const Maps = () => {
     {
       key: "Lagos",
       temp: 30,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 6.453,
         lng: 3.396,
@@ -162,6 +244,7 @@ const Maps = () => {
     {
       key: "Rabat",
       temp: 20,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 34.025,
         lng: -6.836,
@@ -170,6 +253,7 @@ const Maps = () => {
     {
       key: "Beijing",
       temp: 30,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 39.929,
         lng: 116.388,
@@ -178,6 +262,7 @@ const Maps = () => {
     {
       key: "New Delhi",
       temp: 40,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 28.6,
         lng: 77.2,
@@ -186,6 +271,7 @@ const Maps = () => {
     {
       key: "Seoul",
       temp: 21,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 37.566,
         lng: 127,
@@ -194,6 +280,7 @@ const Maps = () => {
     {
       key: "Cape Town",
       temp: 16,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: -33.917,
         lng: 18.417,
@@ -202,6 +289,7 @@ const Maps = () => {
     {
       key: "Miami",
       temp: 27,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 25.774,
         lng: -80.194,
@@ -210,6 +298,7 @@ const Maps = () => {
     {
       key: "Vancouver",
       temp: 14,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 49.25,
         lng: -123.133,
@@ -218,6 +307,7 @@ const Maps = () => {
     {
       key: "Anchorage",
       temp: 8,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 61.218,
         lng: -149.9,
@@ -226,6 +316,7 @@ const Maps = () => {
     {
       key: "Yellowknife",
       temp: 0,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 62.45,
         lng: -114.35,
@@ -234,6 +325,7 @@ const Maps = () => {
     {
       key: "Nuuk",
       temp: -5,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 64.183,
         lng: -51.75,
@@ -242,6 +334,7 @@ const Maps = () => {
     {
       key: "Qaarsut",
       temp: -10,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 70.733,
         lng: -52.65,
@@ -250,6 +343,7 @@ const Maps = () => {
     {
       key: "Bogota",
       temp: 17,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 4.6,
         lng: -74.083,
@@ -258,6 +352,7 @@ const Maps = () => {
     {
       key: "Sydney",
       temp: 20,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: -33.883,
         lng: 151.217,
@@ -266,6 +361,7 @@ const Maps = () => {
     {
       key: "Darwin",
       temp: 30,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: -12.467,
         lng: 130.833,
@@ -274,6 +370,7 @@ const Maps = () => {
     {
       key: "Auckland",
       temp: 18,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: -36.867,
         lng: 174.767,
@@ -282,6 +379,7 @@ const Maps = () => {
     {
       key: "Manila",
       temp: 33,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 14.604,
         lng: 120.982,
@@ -290,6 +388,7 @@ const Maps = () => {
     {
       key: "Murmansk",
       temp: 6,
+      rainfall: 25, // Annual rainfall in mm
       location: {
         lat: 68.967,
         lng: 33.083,
@@ -422,7 +521,10 @@ const Maps = () => {
 
   return (
     <div className="maps-container">
-      <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+      <APIProvider
+        apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+        libraries={["visualization"]}
+      >
         <Map
           mapId="DEMO_MAP_ID"
           disableDefaultUI={false}
@@ -445,6 +547,8 @@ const Maps = () => {
           }}
         >
           <MyComponent />
+
+          <RainfallHeatmap locations={locations} visible={true} />
 
           {locations && (
             <PoiMarkers
