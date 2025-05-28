@@ -7,6 +7,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LocationMapsPage from "./pages/LocationMapsPage";
 import HeatmapPage from "./pages/HeatmapPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import LifeExpectancyPage from "./pages/LifeExpectancyPage"; // Import the LifeExpectancy component
 import WorldCupPage from "./pages/WorldCupPage"; // Import the D3Page component
 import ScrollToTop from "./components/ScrollToTop"; // Import the ScrollToTop component
@@ -35,6 +36,7 @@ function App() {
             path="/projects/health-adjusted-life-expectancy"
             element={<LifeExpectancyPage />}
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ScrollToTop>
     </Router>
