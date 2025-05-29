@@ -53,8 +53,6 @@ function WorldCup() {
   useEffect(() => {
     if (!geoData || !worldCupData) return;
 
-    console.log(worldCupData);
-
     d3.select(chartRef.current).selectAll("svg").remove();
 
     // Specify the chart’s dimensions.
@@ -115,7 +113,6 @@ function WorldCup() {
       ([key, value]) => ({ key, value })
     );
 
-    console.log(nested);
     // Calculate the extent of attendance for scaling bubble sizes
 
     const attendance_extent = d3.extent(nested, (d) => d.value["attendance"]);

@@ -6,3 +6,17 @@
   height: calc(100vh - 70px);
   overflow-x: auto;
 }
+
+.life-expectancy-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: calc(100vh - 70px);
+}
+
+@media (max-width: 980px) {
+  .life-expectancy-loading {
+    height: calc(100vh - 130px);
+  }
+}

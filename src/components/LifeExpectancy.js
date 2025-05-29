@@ -385,10 +385,6 @@ const data = [
   { name: "Zimbabwe", hale: 54.4 },
 ];
 
-//  d3.json("../assets/countries-50m.json", (error, world) => {
-//   console.log(world);
-//  });
-
 function LifeExpectancy() {
   const chartRef = useRef(null);
   const [worldData, setWorldData] = useState(null);
@@ -396,15 +392,13 @@ function LifeExpectancy() {
 
   useEffect(() => {
     // Load the TopoJSON data
-    // setLoading(true);
+    setLoading(true);
     d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
       .then((topology) => {
-        console.log("Loaded countries data:", topology);
         setWorldData(topology);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error loading countries data:", error);
         setLoading(false);
       });
   }, []);
@@ -437,7 +431,6 @@ function LifeExpectancy() {
 
     // Index the values and create the color scale.
     const valuemap = new Map(data.map((d) => [d.name, d.hale]));
-    console.log(valuemap);
     const color = d3.scaleSequential(
       d3.extent(valuemap.values()),
       d3.interpolateYlGnBu
@@ -490,6 +483,9 @@ function LifeExpectancy() {
       .attr("d", path);
   }, [worldData]);
 
+  if (loading) {
+    return <div className="life-expectancy-loading">Loading...</div>;
+  }
   return <div ref={chartRef} className="life-expectancy-container"></div>;
 }
 

@@ -19,5 +19,8 @@
   /* border: 1px solid green; */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 980px) {
+  .worldcup-loading {
+    height: calc(100vh - 130px);
+  }
 }
