@@ -38,7 +38,7 @@ function Portfolio() {
       link: "/projects/earthquake-magnitude-heatmap",
     },
     {
-      id: 5,
+      id: 4,
       title: "Historical FIFA world cup geo map",
       category: "Google Maps",
       completed: true,
@@ -50,10 +50,10 @@ function Portfolio() {
       id: 5,
       title: "Personal injury road accidents in GB from 1979",
       category: "D3",
-      completed: false,
+      completed: true,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/gba.png",
-      link: "#",
+      link: "/projects/personal-injury-road-accidents",
     },
 
     {

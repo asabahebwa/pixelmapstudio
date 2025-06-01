@@ -10,6 +10,7 @@ import HeatmapPage from "./pages/HeatmapPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LifeExpectancyPage from "./pages/LifeExpectancyPage"; // Import the LifeExpectancy component
 import WorldCupPage from "./pages/WorldCupPage"; // Import the D3Page component
+import HexagonLayerPage from "./pages/HexagonLayerPage";
 import ScrollToTop from "./components/ScrollToTop"; // Import the ScrollToTop component
 import "./styles/App.css";
 
@@ -35,6 +36,10 @@ function App() {
           <Route
             path="/projects/health-adjusted-life-expectancy"
             element={<LifeExpectancyPage />}
+          />
+          <Route
+            path="/projects/personal-injury-road-accidents"
+            element={<HexagonLayerPage />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
