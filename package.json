@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "deploy": "scp -r ./build/* /var/www/pixelmap.studio/html",
     "test": "react-scripts test",
