@@ -108,10 +108,21 @@ function HexagonLayerMap({
   // Configuration for the controller
   const controllerProps = {
     scrollZoom: isCtrlPressed, // Only enable scroll zoom when Ctrl is pressed
-    dragPan: true,
-    dragRotate: true,
+    dragPan: {
+      touchAction: "none",
+      enableMultiTouch: true,
+      fingerIds: [0, 1], // Require at least two fingers (index 0 and 1)
+      required: 2, // Minimum number of fingers required
+    },
+    dragRotate: {
+      enableMultiTouch: true,
+      fingerIds: [0, 1],
+      required: 2,
+    },
     doubleClickZoom: false,
-    touchZoom: true,
+    touchZoom: {
+      enableMultitouch: true,
+    },
   };
   const layers = [
     new HexagonLayer({
