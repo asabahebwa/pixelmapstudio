@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Map } from "react-map-gl/maplibre";
 import { AmbientLight, PointLight, LightingEffect } from "@deck.gl/core";
 import { HexagonLayer } from "@deck.gl/aggregation-layers";
@@ -77,6 +77,42 @@ function HexagonLayerMap({
   upperPercentile = 100,
   coverage = 1,
 }) {
+  // Add state to track whether Ctrl key is pressed
+  const [isCtrlPressed, setIsCtrlPressed] = useState(false);
+  const deckRef = useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Control") {
+        setIsCtrlPressed(true);
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.key === "Control") {
+        setIsCtrlPressed(false);
+      }
+    };
+
+    // Add listeners to the window
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    // Clean up listeners on unmount
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
+
+  // Configuration for the controller
+  const controllerProps = {
+    scrollZoom: isCtrlPressed, // Only enable scroll zoom when Ctrl is pressed
+    dragPan: true,
+    dragRotate: true,
+    doubleClickZoom: false,
+    touchZoom: true,
+  };
   const layers = [
     new HexagonLayer({
       id: "heatmap",
@@ -106,10 +142,11 @@ function HexagonLayerMap({
   return (
     <div className="map-wrapper">
       <DeckGL
+        ref={deckRef}
         layers={layers}
         effects={[lightingEffect]}
         initialViewState={INITIAL_VIEW_STATE}
-        controller={true}
+        controller={controllerProps}
         getTooltip={getTooltip}
       >
         <Map reuseMaps mapStyle={mapStyle} />
@@ -145,9 +182,7 @@ function HexagonLayerApp() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="hexagon-layer-loading">Loading accident data...</div>
-    );
+    return <div className="hexagon-layer-loading">Loading data...</div>;
   }
 
   if (error) {

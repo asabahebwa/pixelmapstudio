@@ -146,7 +146,7 @@ function WorldCup() {
   }, [geoData, worldCupData]);
 
   if (loading) {
-    return <div className="worldcup-loading">Loading...</div>;
+    return <div className="worldcup-loading">Loading data...</div>;
   }
   if (error) {
     return (

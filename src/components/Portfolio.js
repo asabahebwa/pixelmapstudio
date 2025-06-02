@@ -60,10 +60,10 @@ function Portfolio() {
       id: 6,
       title: "Uber pick up locations in New York City",
       category: "D3",
-      completed: false,
+      completed: true,
       image:
         "https://weathersasa.lon1.cdn.digitaloceanspaces.com/pixelmapstudio/images/upl.png",
-      link: "#",
+      link: "/projects/uber-pickup-locations-in-new-york-city",
     },
   ];
 

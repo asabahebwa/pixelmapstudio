@@ -1,0 +1,44 @@
+.heatmap-layer-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid red; */
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
+.heatmap-layer-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: calc(100vh - 70px);
+}
+
+.heatmap-layer-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: calc(100vh - 70px);
+}
+
+.map-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 980px) {
+  .heatmap-layer-loading {
+    height: calc(100vh - 130px);
+  }
+  .heatmap-layer-error {
+    height: calc(100vh - 130px);
+  }
+}

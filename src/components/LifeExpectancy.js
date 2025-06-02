@@ -484,7 +484,7 @@ function LifeExpectancy() {
   }, [worldData]);
 
   if (loading) {
-    return <div className="life-expectancy-loading">Loading...</div>;
+    return <div className="life-expectancy-loading">Loading data...</div>;
   }
   return <div ref={chartRef} className="life-expectancy-container"></div>;
 }
