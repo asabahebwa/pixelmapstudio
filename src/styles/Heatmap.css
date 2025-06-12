@@ -6,9 +6,23 @@
   height: calc(100vh - 70px);
 }
 
+.heatmap-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: calc(100vh - 70px);
+}
+
 @media (max-width: 980px) {
   .maps-container {
     height: calc(100vh - 130px);
     /* border: 1px solid red; */
+  }
+  .heatmap-loading {
+    height: calc(100vh - 130px);
+  }
+  .heatmap-error {
+    height: calc(100vh - 130px);
   }
 }

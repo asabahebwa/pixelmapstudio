@@ -57,18 +57,17 @@ function Footer() {
           </div>
           <div className="column-two">
             <div className="column-three">
-              <p className="footer-column-heading">Products & Services</p>
-
-              <p className="footer-column-option">For Business</p>
-              <p className="footer-column-option">For Partners</p>
-              <p className="footer-column-option">For Advertising</p>
-              <p className="footer-column-option">For Developers</p>
+              <p className="footer-column-heading mb-3">Products & Services</p>
+              <p className="footer-column-option mb-3">For Business</p>
+              <p className="footer-column-option mb-3">For Partners</p>
+              <p className="footer-column-option mb-3">For Advertising</p>
+              <p className="footer-column-option mb-3">For Developers</p>
             </div>
 
             <div className="column-four">
-              <p className="footer-column-heading">Contact</p>
-              <p className="footer-column-option">lasabahebwa@gmail.com</p>
-              <p className="footer-column-option">(+256) 785 759096</p>
+              <p className="footer-column-heading mb-3">Contact</p>
+              <p className="footer-column-option mb-3">lasabahebwa@gmail.com</p>
+              <p className="footer-column-option mb-3">(+256) 785 759096</p>
             </div>
           </div>
         </div>

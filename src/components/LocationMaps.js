@@ -61,76 +61,9 @@ const CustomLocationsInfoWindow = ({ poi, getTempColor }) => {
   );
 };
 
-const RainfallHeatmap = ({ locations, visible = true }) => {
-  const map = useMap();
-  const visualization = useMapsLibrary("visualization");
-
-  const heatmap = useMemo(() => {
-    if (!visualization) return null;
-
-    try {
-      return new window.google.maps.visualization.HeatmapLayer({
-        data: [],
-        map: null,
-        radius: 20,
-        opacity: 0.7,
-        dissipating: true,
-        gradient: [
-          "rgba(0, 255, 255, 0)",
-          "rgba(0, 255, 255, 1)",
-          "rgba(0, 191, 255, 1)",
-          "rgba(0, 127, 255, 1)",
-          "rgba(0, 63, 255, 1)",
-          "rgba(0, 0, 255, 1)",
-          "rgba(0, 0, 223, 1)",
-          "rgba(0, 0, 191, 1)",
-          "rgba(0, 0, 159, 1)",
-          "rgba(0, 0, 127, 1)",
-        ], // Blue gradient for rainfall
-      });
-    } catch (error) {
-      console.error("Error creating heatmap:", error);
-      return null;
-    }
-  }, [visualization]);
-
-  // Update heatmap data when locations change
-  useEffect(() => {
-    if (!heatmap || !visualization || !locations) return;
-
-    try {
-      const heatmapData = locations.map((location) => {
-        return {
-          location: new visualization.LatLng(
-            location.location.lat,
-            location.location.lng
-          ),
-          weight: location.rainfall / 100, // Scale rainfall to appropriate weight
-        };
-      });
-
-      heatmap.setData(heatmapData);
-    } catch (error) {
-      console.error("Error setting heatmap data:", error);
-    }
-  }, [heatmap, locations, visualization]);
-
-  // Toggle heatmap visibility
-  useEffect(() => {
-    if (!heatmap || !map) return;
-
-    heatmap.setMap(visible ? map : null);
-
-    return () => {
-      if (heatmap) heatmap.setMap(null);
-    };
-  }, [heatmap, map, visible]);
-
-  return null;
-};
-
 const Maps = () => {
   const [zoom, setZoom] = useState(3);
+  const [loading, setLoading] = useState(true);
 
   const locations = [
     {
@@ -519,6 +452,42 @@ const Maps = () => {
     }
   };
 
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="location-maps-loading">
+        <div className="flex flex-col items-center">
+          <svg
+            className="animate-spin h-10 w-10 mb-4 text-blue-500"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="maps-container">
       <APIProvider
@@ -547,8 +516,6 @@ const Maps = () => {
           }}
         >
           <MyComponent />
-
-          <RainfallHeatmap locations={locations} visible={true} />
 
           {locations && (
             <PoiMarkers
