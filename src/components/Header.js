@@ -63,12 +63,15 @@ export default function Header() {
           </nav>
         </div>
         <div className="right-header">
-          <a
-            href="mailto:lasabahebwa@gmail.com"
-            className={`contact ${scrolled ? "scrolled" : ""}`}
-          >
-            Contact
-          </a>
+          <nav className="main-nav">
+            <ul>
+              <li>
+                <Link to="/contact" className={scrolled ? "scrolled" : ""}>
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
       <div className="mobile-nav">
