@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   /* border: 1px solid red; */
+  font-weight: 600;
   background-color: #fff;
   color: #141414;
   transition: all 0.3s ease;
@@ -36,6 +37,7 @@
 .pages-left-header .pages-brand-name {
   font-size: 23px;
   margin-left: 0.5rem;
+  font-weight: 400;
   /* border: 1px solid red; */
   color: #141414;
 }
