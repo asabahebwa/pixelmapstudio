@@ -45,17 +45,12 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link to="/" className={scrolled ? "scrolled" : ""}>
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className={scrolled ? "scrolled" : ""}>
+                <Link to="/services" className={scrolled ? "scrolled" : ""}>
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/" className={scrolled ? "scrolled" : ""}>
+                <Link to="/about" className={scrolled ? "scrolled" : ""}>
                   About
                 </Link>
               </li>
@@ -83,17 +78,12 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link to="/" className={scrolled ? "scrolled" : ""}>
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link to="/" className={scrolled ? "scrolled" : ""}>
+              <Link to="/services" className={scrolled ? "scrolled" : ""}>
                 Services
               </Link>
             </li>
             <li>
-              <Link to="/" className={scrolled ? "scrolled" : ""}>
+              <Link to="/about" className={scrolled ? "scrolled" : ""}>
                 About
               </Link>
             </li>
