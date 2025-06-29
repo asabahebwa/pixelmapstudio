@@ -79,22 +79,23 @@ function Contact() {
   };
 
   return (
-    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8 min-h-screen flex justify-center items-center">
+    <div className="py-16 px-4 sm:px-6 lg:px-8 min-h-screen flex justify-center items-center">
       <div className="w-full max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
-          <p className="text-lg text-gray-600">
+          <h1 className="text-4xl text-[#293340] mb-4">Contact Us</h1>
+          <p className="text-lg text-[#666]">
             Have questions about our services or want to collaborate? Send us a
             message and we'll get back to you as soon as possible.
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div
+          className="rounded-lg overflow-hidden"
+          style={{ backgroundColor: "#f7f9fb" }}
+        >
           <div className="px-6 py-8 sm:p-10">
             <div className="flex items-center justify-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Send Us A Message
-              </h2>
+              <h2 className="text-2xl  text-[#293340]">Send Us A Message</h2>
             </div>
 
             {submitStatus.submitted && (
@@ -114,7 +115,7 @@ function Contact() {
                 <div>
                   <label
                     htmlFor="firstName"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[#293340] mb-1"
                   >
                     First Name
                   </label>
@@ -133,7 +134,7 @@ function Contact() {
                 <div>
                   <label
                     htmlFor="lastName"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium text-[#293340] mb-1"
                   >
                     Last Name
                   </label>
@@ -153,7 +154,7 @@ function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-[#293340] mb-1"
                 >
                   Email Address
                 </label>
@@ -172,7 +173,7 @@ function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-[#293340] mb-1"
                 >
                   Message
                 </label>
