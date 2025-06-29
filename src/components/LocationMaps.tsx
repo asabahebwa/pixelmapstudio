@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useMemo } from "react";
-import { useMapsLibrary } from "@vis.gl/react-google-maps";
+import { useEffect, useState } from "react";
 import "../styles/LocationMaps.css";
 
 import {
@@ -27,8 +25,16 @@ const MyComponent = () => {
   return null;
 };
 
-const CustomLocationsInfoWindow = ({ poi, getTempColor }) => {
-  const [markerRef, marker] = useAdvancedMarkerRef();
+type CustomLocationsInfoWindowProps = {
+  poi: Poi;
+  getTempColor: (temp: number) => string;
+};
+
+const CustomLocationsInfoWindow = ({
+  poi,
+  getTempColor,
+}: CustomLocationsInfoWindowProps) => {
+  const [markerRef] = useAdvancedMarkerRef();
 
   return (
     <>
@@ -61,9 +67,20 @@ const CustomLocationsInfoWindow = ({ poi, getTempColor }) => {
   );
 };
 
+type Poi = {
+  key: string;
+  temp: number;
+  rainfall: number;
+  location: {
+    lat: number;
+    lng: number;
+  };
+  visible?: boolean; // Optional visibility property
+};
+
 const Maps = () => {
-  const [zoom, setZoom] = useState(3);
-  const [loading, setLoading] = useState(true);
+  const [zoom, setZoom] = useState<number>(3);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const locations = [
     {
@@ -329,7 +346,7 @@ const Maps = () => {
     },
   ];
 
-  const getZoomThreshold = (customId) => {
+  const getZoomThreshold = (customId: string) => {
     let zoomThreshold;
     switch (customId) {
       case "Berlin":
@@ -357,7 +374,7 @@ const Maps = () => {
     return zoomThreshold;
   };
 
-  let filteredLocationsWithThreshold = locations.map((poi) => {
+  let filteredLocationsWithThreshold = locations.map((poi: Poi) => {
     const customId = poi.key;
 
     return {
@@ -366,11 +383,11 @@ const Maps = () => {
     };
   });
 
-  const handleZoomChange = (zoom) => {
+  const handleZoomChange = (zoom: any) => {
     setZoom(zoom.detail.zoom);
   };
 
-  const getTempColor = (temp) => {
+  const getTempColor = (temp: number) => {
     switch (true) {
       case temp < -30:
         return "#241967";
@@ -491,7 +508,7 @@ const Maps = () => {
   return (
     <div className="maps-container">
       <APIProvider
-        apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+        apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string}
         libraries={["visualization"]}
       >
         <Map
@@ -506,14 +523,16 @@ const Maps = () => {
           mapTypeId={"satellite"}
           defaultZoom={3}
           defaultCenter={{ lat: 20, lng: 0 }} // Add a default center
-          defaultOptions={{
-            zoomControl: false,
-            scrollwheel: false,
-          }}
-          options={{
-            minZoom: 2, // Set minimum zoom level (prevents zooming out beyond this)
-            maxZoom: 20, // Optional: Set maximum zoom level (prevents zooming in beyond this)
-          }}
+          minZoom={2}
+          maxZoom={20}
+          // defaultOptions={{
+          //   zoomControl: false,
+          //   scrollwheel: false,
+          // }}
+          // options={{
+          //   minZoom: 2,
+          //   maxZoom: 20,
+          // }}
         >
           <MyComponent />
 
@@ -530,7 +549,18 @@ const Maps = () => {
 };
 
 // Create a separate component for each marker
-const LocationsPoiMarker = ({ poi, getTempColor, visible }) => {
+
+type LocationsPoiMarkerProps = {
+  key?: number;
+  poi: Poi;
+  getTempColor: (temp: number) => string;
+  visible?: boolean;
+};
+const LocationsPoiMarker = ({
+  poi,
+  getTempColor,
+  visible,
+}: LocationsPoiMarkerProps) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
 
   let isVisible = visible;
@@ -565,7 +595,12 @@ const LocationsPoiMarker = ({ poi, getTempColor, visible }) => {
   );
 };
 
-const PoiMarkers = ({ locations, getTempColor }) => {
+type PoiMarkersProps = {
+  locations: Poi[];
+  getTempColor: (temp: number) => string;
+};
+
+const PoiMarkers = ({ locations, getTempColor }: PoiMarkersProps) => {
   return (
     <>
       {locations.map((poi, index) => {

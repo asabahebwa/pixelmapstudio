@@ -5,6 +5,7 @@ import { HexagonLayer } from "@deck.gl/aggregation-layers";
 import { DeckGL } from "@deck.gl/react";
 import { CSVLoader } from "@loaders.gl/csv";
 import { load } from "@loaders.gl/core";
+import type { Color, PickingInfo, MapViewState } from "@deck.gl/core";
 import "../styles/HexagonLayer.css";
 
 // Source data CSV
@@ -34,7 +35,7 @@ const lightingEffect = new LightingEffect({
   pointLight2,
 });
 
-const INITIAL_VIEW_STATE = {
+const INITIAL_VIEW_STATE: MapViewState = {
   longitude: -1.415727,
   latitude: 52.232395,
   zoom: 6,
@@ -47,7 +48,7 @@ const INITIAL_VIEW_STATE = {
 const MAP_STYLE =
   "https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json";
 
-export const colorRange = [
+export const colorRange: Color[] = [
   [1, 152, 189],
   [73, 227, 206],
   [216, 254, 181],
@@ -56,7 +57,7 @@ export const colorRange = [
   [209, 55, 78],
 ];
 
-function getTooltip({ object }) {
+function getTooltip({ object }: PickingInfo) {
   if (!object) {
     return null;
   }
@@ -70,25 +71,38 @@ function getTooltip({ object }) {
     ${count} Accidents`;
 }
 
+type DataPoint = [longitude: number, latitude: number];
+
+interface CSVDataRow {
+  lng: number;
+  lat: number;
+}
+
 function HexagonLayerMap({
   data,
   mapStyle = MAP_STYLE,
   radius = 1000,
   upperPercentile = 100,
   coverage = 1,
+}: {
+  data?: DataPoint[] | null;
+  mapStyle?: string;
+  radius?: number;
+  upperPercentile?: number;
+  coverage?: number;
 }) {
   // Add state to track whether Ctrl key is pressed
   const [isCtrlPressed, setIsCtrlPressed] = useState(false);
   const deckRef = useRef(null);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Control") {
         setIsCtrlPressed(true);
       }
     };
 
-    const handleKeyUp = (e) => {
+    const handleKeyUp = (e: KeyboardEvent) => {
       if (e.key === "Control") {
         setIsCtrlPressed(false);
       }
@@ -106,7 +120,7 @@ function HexagonLayerMap({
   }, []);
 
   // Configuration for the controller
-  const controllerProps = {
+  const controllerProps: any = {
     scrollZoom: isCtrlPressed, // Only enable scroll zoom when Ctrl is pressed
     dragPan: {
       touchAction: "none",
@@ -125,7 +139,7 @@ function HexagonLayerMap({
     },
   };
   const layers = [
-    new HexagonLayer({
+    new HexagonLayer<DataPoint>({
       id: "heatmap",
       gpuAggregation: true,
       colorRange,
@@ -158,6 +172,7 @@ function HexagonLayerMap({
         effects={[lightingEffect]}
         initialViewState={INITIAL_VIEW_STATE}
         controller={controllerProps}
+        // controller={true} // Enable default controller
         getTooltip={getTooltip}
       >
         <Map reuseMaps mapStyle={mapStyle} />
@@ -168,23 +183,37 @@ function HexagonLayerMap({
 
 // Container component that handles data fetching
 function HexagonLayerApp() {
-  const [points, setPoints] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  //  const [points, setPoints] = useState(null);
+  const [points, setPoints] = useState<DataPoint[] | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
         setLoading(true);
         const result = await load(DATA_URL, CSVLoader);
-        const extractedPoints = result.data
-          .map((d) => (Number.isFinite(d.lng) ? [d.lng, d.lat] : null))
-          .filter(Boolean);
+
+        const csvData = result.data as CSVDataRow[];
+
+        const extractedPoints: DataPoint[] = csvData
+          .map((d) =>
+            Number.isFinite(d.lng) && Number.isFinite(d.lat)
+              ? ([d.lng, d.lat] as DataPoint)
+              : null
+          )
+          .filter((point): point is DataPoint => point !== null);
+
         setPoints(extractedPoints);
         setLoading(false);
-      } catch (err) {
-        console.error("Error loading data:", err);
-        setError(err);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          // Handle the case where the caught value is not an Error object
+          setError("An unknown error occurred");
+        }
+
         setLoading(false);
       }
     }

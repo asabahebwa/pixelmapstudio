@@ -21,11 +21,9 @@ export const getBulkWeatherData = (locations) => {
       return response.json();
     })
     .then((data) => {
-      console.log("Fetch", data);
       return data;
     })
     .catch((error) => {
       console.error("Fetch", error);
-      // Output e.g.: "Fetch Error: 404, Not found"
     });
 };

@@ -1,13 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import { Map } from "react-map-gl/maplibre";
 import { DeckGL } from "@deck.gl/react";
+import type { MapViewState } from "@deck.gl/core";
 import { HeatmapLayer } from "@deck.gl/aggregation-layers";
 import "../styles/HeatmapLayer.css";
 
 const DATA_URL =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/screen-grid/uber-pickup-locations.json"; // eslint-disable-line
 
-const INITIAL_VIEW_STATE = {
+const INITIAL_VIEW_STATE: MapViewState = {
   longitude: -73.75,
   latitude: 40.73,
   zoom: 9,
@@ -19,25 +20,33 @@ const INITIAL_VIEW_STATE = {
 const MAP_STYLE =
   "https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json";
 
+type DataPoint = [longitude: number, latitude: number, count: number];
+
 function HeatmapLayerMap({
   data = DATA_URL,
   intensity = 1,
   threshold = 0.03,
   radiusPixels = 30,
   mapStyle = MAP_STYLE,
+}: {
+  data?: string | DataPoint[];
+  intensity?: number;
+  threshold?: number;
+  radiusPixels?: number;
+  mapStyle?: string;
 }) {
   // Add state to track whether Ctrl key is pressed
   const [isCtrlPressed, setIsCtrlPressed] = useState(false);
   const deckRef = useRef(null);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Control") {
         setIsCtrlPressed(true);
       }
     };
 
-    const handleKeyUp = (e) => {
+    const handleKeyUp = (e: KeyboardEvent) => {
       if (e.key === "Control") {
         setIsCtrlPressed(false);
       }
@@ -55,7 +64,7 @@ function HeatmapLayerMap({
   }, []);
 
   // Configuration for the controller
-  const controllerProps = {
+  const controllerProps: any = {
     scrollZoom: isCtrlPressed, // Only enable scroll zoom when Ctrl is pressed
     dragPan: {
       touchAction: "none",
@@ -75,7 +84,7 @@ function HeatmapLayerMap({
   };
 
   const layers = [
-    new HeatmapLayer({
+    new HeatmapLayer<DataPoint>({
       data,
       id: "heatmap-layer",
       pickable: false,
@@ -93,6 +102,7 @@ function HeatmapLayerMap({
         ref={deckRef}
         initialViewState={INITIAL_VIEW_STATE}
         controller={controllerProps}
+        // controller={true} // Enable default controller
         layers={layers}
       >
         <Map reuseMaps mapStyle={mapStyle} />
@@ -103,9 +113,10 @@ function HeatmapLayerMap({
 
 // Container component that handles data fetching
 function HeatmapLayerApp() {
-  const [points, setPoints] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  //  const [points, setPoints] = useState(null);
+  const [points, setPoints] = useState<DataPoint[] | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -116,8 +127,13 @@ function HeatmapLayerApp() {
         }
         const data = await response.json();
         setPoints(data);
-      } catch (err) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          // Handle the case where the caught value is not an Error object
+          setError("An unknown error occurred");
+        }
       } finally {
         setLoading(false);
       }
