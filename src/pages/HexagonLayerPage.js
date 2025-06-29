@@ -1,16 +1,11 @@
-import React from "react";
-import Header from "../components/PagesHeader";
+import Layout from "../components/Layout";
 import HexagonLayer from "../components/HexagonLayer";
-import Footer from "../components/Footer";
 
 function LocationMapsPage() {
-    
   return (
-    <>
-      <Header />
+    <Layout>
       <HexagonLayer />
-      <Footer />
-    </>
+    </Layout>
   );
 }
 

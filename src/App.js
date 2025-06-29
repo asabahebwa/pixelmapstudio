@@ -1,18 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage"; // Create this as your main page
-import BlogPage from "./pages/BlogPage";
+import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import LocationMapsPage from "./pages/LocationMapsPage";
 import HeatmapPage from "./pages/HeatmapPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import LifeExpectancyPage from "./pages/LifeExpectancyPage"; // Import the LifeExpectancy component
-import WorldCupPage from "./pages/WorldCupPage"; // Import the D3Page component
+import LifeExpectancyPage from "./pages/LifeExpectancyPage";
+import WorldCupPage from "./pages/WorldCupPage";
 import HexagonLayerPage from "./pages/HexagonLayerPage";
 import HeatmapLayerPage from "./pages/HeatmapLayerPage";
-import ScrollToTop from "./components/ScrollToTop"; // Import the ScrollToTop component
+import ScrollToTop from "./components/ScrollToTop";
 import "./styles/App.css";
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/blog" element={<BlogPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
