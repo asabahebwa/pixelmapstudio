@@ -71,6 +71,21 @@
   color: #141414;
 }
 
+.pages-main-nav ul li a.active-nav-link {
+  color: #141414;
+  font-weight: 600;
+}
+
+.pages-right-header ul li a.active-nav-link {
+  color: #141414;
+  font-weight: 600;
+}
+
+.pages-mobile-nav .pages-main-nav ul li a.active-nav-link {
+  color: #141414;
+  font-weight: 600;
+}
+
 .pages-right-header {
   display: flex;
   align-items: center;
