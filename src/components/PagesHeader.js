@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../styles/PagesHeader.css";
 import logo from "../assets/logo.svg"; // Adjust the path to your logo image
 
@@ -23,10 +23,24 @@ export default function Header() {
               </li>
 
               <li>
-                <Link to="/services">Services</Link>
+                <NavLink
+                  to="/services"
+                  className={({ isActive }) =>
+                    isActive ? "active-nav-link" : ""
+                  }
+                >
+                  Services
+                </NavLink>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive ? "active-nav-link" : ""
+                  }
+                >
+                  About
+                </NavLink>
               </li>
             </ul>
           </nav>
@@ -35,7 +49,14 @@ export default function Header() {
           <nav className="main-nav">
             <ul>
               <li>
-                <Link to="/contact">Contact</Link>
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    isActive ? "active-nav-link" : ""
+                  }
+                >
+                  Contact
+                </NavLink>
               </li>
             </ul>
           </nav>
@@ -47,12 +68,25 @@ export default function Header() {
             <li>
               <Link to="/">Home</Link>
             </li>
-
             <li>
-              <Link to="/services">Services</Link>
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  isActive ? "active-nav-link" : ""
+                }
+              >
+                Services
+              </NavLink>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "active-nav-link" : ""
+                }
+              >
+                About
+              </NavLink>
             </li>
           </ul>
         </nav>
