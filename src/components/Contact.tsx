@@ -2,23 +2,40 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
+type FormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+};
+
+type SubmitStatus = {
+  submitted: boolean;
+  success: boolean;
+  message: string;
+};
+
+type IsSubmitting = boolean;
+
 function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
     message: "",
   });
 
-  const [submitStatus, setSubmitStatus] = useState({
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>({
     submitted: false,
     success: false,
     message: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState<IsSubmitting>(false);
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -26,7 +43,7 @@ function Contact() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -184,7 +201,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="Type your message here..."
-                  rows="5"
+                  rows={5}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 ></textarea>
               </div>
