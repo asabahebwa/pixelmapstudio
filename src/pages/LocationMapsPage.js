@@ -1,15 +1,11 @@
-import React from "react";
-import Header from "../components/PagesHeader";
+import Layout from "../components/Layout";
 import LocationMaps from "../components/LocationMaps";
-import Footer from "../components/Footer";
 
 function LocationMapsPage() {
   return (
-    <>
-      <Header />
+    <Layout>
       <LocationMaps />
-      <Footer />
-    </>
+    </Layout>
   );
 }
 

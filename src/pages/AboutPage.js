@@ -1,14 +1,11 @@
-import Header from "../components/PagesHeader";
-import Footer from "../components/Footer";
+import Layout from "../components/Layout";
 import About from "../components/About";
 
 const AboutPage = () => {
   return (
-    <>
-      <Header />
+    <Layout>
       <About />
-      <Footer />
-    </>
+    </Layout>
   );
 };
 

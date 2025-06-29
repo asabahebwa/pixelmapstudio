@@ -1,15 +1,11 @@
-import React from "react";
-import Header from "../components/PagesHeader";
+import Layout from "../components/Layout";
 import WorldCup from "../components/WorldCup";
-import Footer from "../components/Footer";
 
 function D3Page() {
   return (
-    <>
-      <Header />
+    <Layout>
       <WorldCup />
-      <Footer />
-    </>
+    </Layout>
   );
 }
 

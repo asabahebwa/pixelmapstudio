@@ -1,14 +1,11 @@
-import Header from "../components/PagesHeader";
+import Layout from "../components/Layout";
 import HeatmapLayer from "../components/HeatmapLayer";
-import Footer from "../components/Footer";
 
 function HeatmapLayerPage() {
   return (
-    <>
-      <Header />
+    <Layout>
       <HeatmapLayer />
-      <Footer />
-    </>
+    </Layout>
   );
 }
 

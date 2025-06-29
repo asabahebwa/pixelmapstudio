@@ -1,15 +1,11 @@
-import React from "react";
-import Header from "../components/PagesHeader";
+import Layout from "../components/Layout";
 import Heatmap from "../components/Heatmap";
-import Footer from "../components/Footer";
 
 function HeatmapPage() {
   return (
-    <>
-      <Header />
+    <Layout>
       <Heatmap />
-      <Footer />
-    </>
+    </Layout>
   );
 }
 

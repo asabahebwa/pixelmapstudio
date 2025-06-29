@@ -1,16 +1,12 @@
-import React from "react";
-import Header from "../components/PagesHeader";
-import Footer from "../components/Footer";
+import Layout from "../components/Layout";
 import Services from "../components/Services";
 
-const ServicesPage = () => {
+function ServicesPage() {
   return (
-    <>
-      <Header />
+    <Layout>
       <Services />
-      <Footer />
-    </>
+    </Layout>
   );
-};
+}
 
 export default ServicesPage;
