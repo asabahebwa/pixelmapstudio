@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import LifeExpectancy from "../components/LifeExpectancy.js";
+import LifeExpectancy from "../components/LifeExpectancy";
 
 function LocationMapsPage() {
   return (

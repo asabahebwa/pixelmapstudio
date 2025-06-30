@@ -1,10 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
+import { FeatureCollection } from "geojson";
+import { GeometryObject } from "topojson-specification";
 import "../styles/LifeExpectancy.css"; // Import your CSS file for styling
 
 function Legend(
-  color,
+  color: any,
   {
     title,
     tickSize = 6,
@@ -17,13 +19,13 @@ function Legend(
     ticks = width / 64,
     tickFormat,
     tickValues,
-  } = {}
+  }: any = {}
 ) {
-  function ramp(color, n = 256) {
+  function ramp(color: any, n = 256) {
     const canvas = document.createElement("canvas");
     canvas.width = n;
     canvas.height = 1;
-    const context = canvas.getContext("2d");
+    const context: any = canvas.getContext("2d");
     for (let i = 0; i < n; ++i) {
       context.fillStyle = color(i / (n - 1));
       context.fillRect(i, 0, 1, 1);
@@ -39,9 +41,9 @@ function Legend(
     .style("overflow", "visible")
     .style("display", "block");
 
-  let tickAdjust = (g) =>
+  let tickAdjust = (g: any) =>
     g.selectAll(".tick line").attr("y1", marginTop + marginBottom - height);
-  let x;
+  let x: any;
 
   // Continuous
   if (color.interpolate) {
@@ -114,7 +116,7 @@ function Legend(
 
     const thresholdFormat =
       tickFormat === undefined
-        ? (d) => d
+        ? (d: any) => d
         : typeof tickFormat === "string"
         ? d3.format(tickFormat)
         : tickFormat;
@@ -133,10 +135,10 @@ function Legend(
       .attr("y", marginTop)
       .attr("width", (d, i) => x(i) - x(i - 1))
       .attr("height", height - marginTop - marginBottom)
-      .attr("fill", (d) => d);
+      .attr("fill", (d: any) => d);
 
     tickValues = d3.range(thresholds.length);
-    tickFormat = (i) => thresholdFormat(thresholds[i], i);
+    tickFormat = (i: any) => thresholdFormat(thresholds[i], i);
   }
 
   // Ordinal
@@ -387,15 +389,15 @@ const data = [
 
 function LifeExpectancy() {
   const chartRef = useRef(null);
-  const [worldData, setWorldData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [worldData, setWorldData] = useState<TopoJSON.Topology | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // Load the TopoJSON data
     setLoading(true);
     d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
       .then((topology) => {
-        setWorldData(topology);
+        setWorldData(topology as TopoJSON.Topology);
         setLoading(false);
       })
       .catch((error) => {
@@ -407,17 +409,20 @@ function LifeExpectancy() {
     if (!worldData) return;
 
     // Convert TopoJSON to GeoJSON
-    const countries = topojson.feature(worldData, worldData.objects.countries);
+    const countries = topojson.feature(
+      worldData,
+      worldData.objects.countries as GeometryObject
+    ) as FeatureCollection;
 
     const countrymesh = topojson.mesh(
       worldData,
-      worldData.objects.countries,
+      worldData.objects.countries as GeometryObject,
       (a, b) => a !== b
     );
     // Specify the chart’s dimensions.
-    const width = 928;
-    const marginTop = 46;
-    const height = width / 2 + marginTop;
+    const width: number = 928;
+    const marginTop: number = 46;
+    const height: number = width / 2 + marginTop;
 
     // Fit the projection.
     const projection = d3.geoEqualEarth().fitExtent(
@@ -425,14 +430,17 @@ function LifeExpectancy() {
         [2, marginTop + 2],
         [width - 2, height],
       ],
-      { type: "Sphere" }
+      { type: "Sphere" } as any
     );
     const path = d3.geoPath(projection);
 
     // Index the values and create the color scale.
     const valuemap = new Map(data.map((d) => [d.name, d.hale]));
+    const validValues = Array.from(valuemap.values()).filter(
+      (value): value is number => value !== null
+    );
     const color = d3.scaleSequential(
-      d3.extent(valuemap.values()),
+      d3.extent(validValues) as [number, number],
       d3.interpolateYlGnBu
     );
 
@@ -461,7 +469,7 @@ function LifeExpectancy() {
       .datum({ type: "Sphere" })
       .attr("fill", "white")
       .attr("stroke", "currentColor")
-      .attr("d", path);
+      .attr("d", path as any);
 
     // Add a path for each country and color it according to this data.
     svg
@@ -469,10 +477,12 @@ function LifeExpectancy() {
       .selectAll("path")
       .data(countries.features)
       .join("path")
-      .attr("fill", (d) => color(valuemap.get(d.properties.name)))
+      .attr("fill", (d) => color(valuemap.get(d.properties?.name) || 0))
       .attr("d", path)
       .append("title")
-      .text((d) => `${d.properties.name}\n${valuemap.get(d.properties.name)}`);
+      .text(
+        (d) => `${d.properties?.name}\n${valuemap.get(d.properties?.name)}`
+      );
 
     // Add a white mesh.
     svg

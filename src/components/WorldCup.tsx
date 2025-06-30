@@ -1,15 +1,25 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
+import { FeatureCollection } from "geojson";
 import "../styles/WorldCup.css"; // Import your CSS file for styling
 
+interface WorldCupData {
+  year: string;
+  home: string;
+  attendance: number;
+  long: string;
+  lat: string;
+  [key: string]: any;
+}
+
 function WorldCup() {
-  const [geoData, setGeoData] = useState(null);
-  const [worldCupData, setWorldCupData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [geoData, setGeoData] = useState<FeatureCollection | null>(null);
+  const [worldCupData, setWorldCupData] = useState<WorldCupData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,7 +35,7 @@ function WorldCup() {
     };
   }, []);
 
-  const chartRef = useRef(null);
+  const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Clear any existing SVG before creating a new one
@@ -46,7 +56,7 @@ function WorldCup() {
         setLoading(false);
       })
       .catch((error) => {
-        setError(true);
+        setError(error);
       });
   }, []);
 
@@ -87,7 +97,7 @@ function WorldCup() {
       .attr("fill", "#f8f9fa") // Light background color for oceans
       .attr("stroke", "#000") // Black border around the globe
       .attr("stroke-width", 1) // Border width
-      .attr("d", path);
+      .attr("d", path as any);
 
     svg
       .selectAll("path")
@@ -104,8 +114,8 @@ function WorldCup() {
         worldCupData,
         (v) => ({
           attendance: d3.sum(v, (d) => +d.attendance),
-          x: d3.mean(v, (d) => projection([+d.long, +d.lat])[0]),
-          y: d3.mean(v, (d) => projection([+d.long, +d.lat])[1]),
+          x: d3.mean(v, (d) => projection([+d.long, +d.lat])?.[0]),
+          y: d3.mean(v, (d) => projection([+d.long, +d.lat])?.[1]),
           country: v[0].home,
         }),
         (d) => d.year
@@ -115,7 +125,10 @@ function WorldCup() {
 
     // Calculate the extent of attendance for scaling bubble sizes
 
-    const attendance_extent = d3.extent(nested, (d) => d.value["attendance"]);
+    const attendance_extent = d3.extent(
+      nested,
+      (d) => d.value["attendance"]
+    ) as [number, number];
 
     const rScale = d3.scaleSqrt().domain(attendance_extent).range([0, 8]);
 
@@ -132,8 +145,8 @@ function WorldCup() {
       .enter()
       .append("circle")
       .attr("fill", "rgb(247, 148, 42)")
-      .attr("cx", (d) => d.value["x"])
-      .attr("cy", (d) => d.value["y"])
+      .attr("cx", (d) => d.value["x"] || 0)
+      .attr("cy", (d) => d.value["y"] || 0)
       .attr("r", (d) => rScale(d.value["attendance"]))
       .attr("stroke", "black")
       .attr("stroke-width", 0.7)
