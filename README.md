@@ -11,7 +11,7 @@ Welcome to **PixelMap**, a curated data visualization portfolio crafted to blend
 PixelMap is designed to:
 
 - Showcase **data storytelling** through clear, engaging, and insightful visualizations.
-- Demonstrate technical proficiency with tools like **Deck GL**, **Google Maps**, **Mapbox GL**, **D3.js**, **ZingChart**, and more.
+- Demonstrate technical proficiency with tools like **Deck GL**, **Google Maps API**, **Mapbox GL**, **D3.js**, **ZingChart**, and more.
 - Communicate complex information effectively to **both technical and non-technical** audiences.
 - Provide evidence of transforming **raw data** into **actionable insights** across domains such as business, healthcare, finance, and social trends.
 
@@ -31,24 +31,15 @@ PixelMap creates real-world impact by:
 
 ## 📌 Tech Stack & Tools
 
-- **Frontend & Visualization:** TypeScript, React, D3.js, ZingChart, Mapbox GL, Google Maps
+- **Frontend & Visualization:** TypeScript, React, D3.js, Deck GL, Mapbox GL, Google Maps API
 - **Design:** Figma
-- **Deployment:** GitHub Actions / Digital Ocean Droplets*
+- **Deployment:** GitHub Actions / Digital Ocean Droplets\*
 
 ---
 
 ## 🚀 Explore the Work
 
 👉 Visit [**pixelmap.studio**](https://pixelmap.studio/) to explore live projects and interact with the visualizations.
-
----
-
-## 📬 Contact
-
-Interested in collaborating or learning more? Let’s connect!
-
-- Email: [lasabahebwa@gmail.com] *(replace with your real email)*
-- LinkedIn: [https://www.linkedin.com/in/livingstone-asabahebwa-290594108/] *(optional)*
 
 ---
 
