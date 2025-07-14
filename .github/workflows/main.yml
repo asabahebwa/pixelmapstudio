@@ -27,7 +27,7 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    name: deploy weathersasa
+    name: deploy pixelmapstudio
     steps:
       - name: Checkout master
         uses: actions/checkout@master
