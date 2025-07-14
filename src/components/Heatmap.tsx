@@ -300,7 +300,7 @@ const App = () => {
 
   return (
     <div className="maps-container">
-      <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string}>
+      <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string}>
         <Map
           defaultCenter={{ lat: 40.7749, lng: -130.4194 }}
           defaultZoom={3}

@@ -2,20 +2,24 @@
   "name": "pixelmapstudio",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "deploy": "scp -r ./dist/* /var/www/pixelmap.studio/html",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@loaders.gl/csv": "^4.3.3",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^24.0.7",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@types/topojson-specification": "^1.0.5",
+    "@tailwindcss/vite": "^4.1.11",
     "@vis.gl/react-google-maps": "^1.5.2",
     "d3": "^7.9.0",
     "deck.gl": "^9.1.12",
@@ -26,48 +30,32 @@
     "react-map-gl": "^8.0.4",
     "react-redux": "^9.1.0",
     "react-router-dom": "^7.6.0",
-    "react-scripts": "^5.0.1",
     "redux": "^5.0.1",
     "source-map-explorer": "^2.5.3",
     "topojson-client": "^3.1.0",
-    "typescript": "^4.9.5",
     "typewriter-effect": "^2.22.0",
     "util": "^0.12.5",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "deploy": "scp -r ./build/* /var/www/pixelmap.studio/html",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/d3": "^7.4.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.13",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "@types/react-router-dom": "^5.3.3",
     "@types/topojson-client": "^3.1.5",
+    "@types/topojson-specification": "^1.0.5",
+    "@vitejs/plugin-react": "^4.5.2",
+    "globals": "^16.3.0",
     "jest-environment-jsdom": "^30.0.2",
     "jest-transform-stub": "^2.0.0",
-    "tailwindcss": "^3.4.17",
     "ts-jest": "^29.4.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0"
   }
 }
