@@ -1,5 +1,7 @@
 ![Tests](https://github.com/asabahebwa/pixelmapstudio/actions/workflows/main.yml/badge.svg)
 
+![gif](https://github.com/asabahebwa/pixelmapstudio/blob/master/src/assets/pms.gif)
+
 # 🎨 PixelMap
 
 Welcome to **PixelMap**, a curated data visualization portfolio crafted to blend **data storytelling**, **technical expertise**, and **visual design** into a compelling showcase of real-world insights.
