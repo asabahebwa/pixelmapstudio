@@ -29,13 +29,12 @@
     "react-dom": "^18.2.0",
     "react-map-gl": "^8.0.4",
     "react-redux": "^9.1.0",
-    "react-router-dom": "^7.6.0",
+    "react-router": "^7.6.3",
     "redux": "^5.0.1",
     "source-map-explorer": "^2.5.3",
     "topojson-client": "^3.1.0",
     "typewriter-effect": "^2.22.0",
-    "util": "^0.12.5",
-    "web-vitals": "^2.1.4"
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -51,6 +50,8 @@
     "@types/topojson-specification": "^1.0.5",
     "@vitejs/plugin-react": "^4.5.2",
     "globals": "^16.3.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^30.0.4",
     "jest-environment-jsdom": "^30.0.2",
     "jest-transform-stub": "^2.0.0",
     "ts-jest": "^29.4.0",

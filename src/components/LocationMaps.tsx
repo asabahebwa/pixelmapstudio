@@ -508,6 +508,7 @@ const Maps = () => {
   return (
     <div className="maps-container">
       <APIProvider
+        // @ts-ignore-next-line
         apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string}
         libraries={["visualization"]}
       >

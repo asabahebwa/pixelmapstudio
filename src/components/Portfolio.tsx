@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router";
 import "../styles/Portfolio.css";
 
 function Portfolio() {
   // Categories for portfolio filtering
-  const categories = ["React", "Google Maps", "Mapbox", "33", "ZingChart"];
-  const [activeCategory, setActiveCategory] = useState("All");
+  // const categories = ["React", "Google Maps", "Mapbox", "33", "ZingChart"];
+  // const [activeCategory, setActiveCategory] = useState("All");
 
   // Sample portfolio items - replace with your actual projects
   const portfolioItems = [
@@ -68,10 +68,10 @@ function Portfolio() {
   ];
 
   // Filter items based on active category
-  const filteredItems =
-    activeCategory === "All"
-      ? portfolioItems
-      : portfolioItems.filter((item) => item.category === activeCategory);
+  // const filteredItems =
+  //   activeCategory === "All"
+  //     ? portfolioItems
+  //     : portfolioItems.filter((item) => item.category === activeCategory);
 
   return (
     <div className="portfolio-wrapper">
@@ -97,7 +97,7 @@ function Portfolio() {
         </div> */}
 
         <div className="portfolio-flex-container">
-          {filteredItems.map((item) => (
+          {portfolioItems.map((item) => (
             <div className="portfolio-item" key={item.id}>
               {item.completed ? (
                 <Link to={item.link} className="portfolio-link">

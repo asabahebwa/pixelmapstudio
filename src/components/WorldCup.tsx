@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import { FeatureCollection } from "geojson";
-import "../styles/WorldCup.css"; // Import your CSS file for styling
+import "../styles/WorldCup.css";
 
 interface WorldCupData {
   year: string;
@@ -18,7 +18,9 @@ function WorldCup() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
+  // @ts-ignore-next-line
   const [width, setWidth] = useState(window.innerWidth);
+  // @ts-ignore-next-line
   const [height, setHeight] = useState(window.innerHeight);
 
   useEffect(() => {

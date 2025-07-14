@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import { FeatureCollection, Point, GeoJsonProperties } from "geojson";
@@ -300,6 +300,7 @@ const App = () => {
 
   return (
     <div className="maps-container">
+      {/* @ts-ignore-next-line */}
       <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string}>
         <Map
           defaultCenter={{ lat: 40.7749, lng: -130.4194 }}

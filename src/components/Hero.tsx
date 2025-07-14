@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Hero.css";
 import Type from "./Type";
 

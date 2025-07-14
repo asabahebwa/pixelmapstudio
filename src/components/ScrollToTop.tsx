@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 type ScrollToTopProps = {
   children: ReactNode;

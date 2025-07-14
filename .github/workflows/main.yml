@@ -6,16 +6,52 @@ on:
       - master
 
 jobs:
-  deploy-to-digital-ocean-droplet:
+  test:
     runs-on: ubuntu-latest
-    name: deploy pixelmapstudio
+    name: run unit tests
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    name: deploy weathersasa
     steps:
       - name: Checkout master
         uses: actions/checkout@master
-      - name: Pull from GitHub
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Pull from GitHub and deploy
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
-          script: cd projects/pixelmapstudio/ && git pull && npm install && npm run build && npm run deploy
+          script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install 22
+            nvm use 22
+            node -v
+            npm -v
+            cd projects/pixelmapstudio/
+            git pull
+            npm install
+            npm run build
+            npm run deploy

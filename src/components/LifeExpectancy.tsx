@@ -131,9 +131,9 @@ function Legend(
       .selectAll("rect")
       .data(color.range())
       .join("rect")
-      .attr("x", (d, i) => x(i - 1))
+      .attr("x", (i: any) => x(i - 1))
       .attr("y", marginTop)
-      .attr("width", (d, i) => x(i) - x(i - 1))
+      .attr("width", (i: any) => x(i) - x(i - 1))
       .attr("height", height - marginTop - marginBottom)
       .attr("fill", (d: any) => d);
 
@@ -391,6 +391,7 @@ function LifeExpectancy() {
   const chartRef = useRef(null);
   const [worldData, setWorldData] = useState<TopoJSON.Topology | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Load the TopoJSON data
@@ -402,6 +403,7 @@ function LifeExpectancy() {
       })
       .catch((error) => {
         setLoading(false);
+        setError("Failed to load world data: " + error.message);
       });
   }, []);
 
@@ -492,6 +494,10 @@ function LifeExpectancy() {
       .attr("stroke", "white")
       .attr("d", path);
   }, [worldData]);
+
+  if (error) {
+    return <div className="life-expectancy-error">{error}</div>;
+  }
 
   if (loading) {
     return (
