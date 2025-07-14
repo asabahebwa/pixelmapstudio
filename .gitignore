@@ -10,6 +10,10 @@
 
 # production
 /build
+/dist
+dist
+dist-ssr
+*.local
 
 # mock files
 /__mocks__/
