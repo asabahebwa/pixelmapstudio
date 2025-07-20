@@ -1,6 +1,6 @@
 ![Tests](https://github.com/asabahebwa/pixelmapstudio/actions/workflows/main.yml/badge.svg)
 
-![gif](https://github.com/asabahebwa/pixelmapstudio/blob/master/src/assets/pms.gif)
+![gif](https://github.com/asabahebwa/pixelmapstudio/blob/master/src/assets/pmsc.gif)
 
 # 🎨 PixelMap
 
