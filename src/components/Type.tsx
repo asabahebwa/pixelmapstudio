@@ -2,7 +2,7 @@ import Typewriter from "typewriter-effect";
 
 function Type() {
   return (
-    <Typewriter
+    <Typewriter 
       options={{
         strings: [
           "interactive",
