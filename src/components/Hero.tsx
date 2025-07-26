@@ -3,7 +3,7 @@ import Type from "./Type";
 
 function Hero() {
   return (
-    <div className="hero-wrapper">
+    <div data-testid="hero-wrapper" className="hero-wrapper">
       <div className="hero-content">
         <div className="hero-message--constant">Data can be</div>
         <div className="hero-message--with-type">

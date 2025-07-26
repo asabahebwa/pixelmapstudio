@@ -1,24 +1,21 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import "../styles/Header.css";
-import logo from "../assets/logo.svg"; // Adjust the path to your logo image
+import logo from "../assets/logo.svg";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  // Add scroll event listener
+
   useEffect(() => {
     const handleScroll = () => {
-      // Check if page is scrolled
       const isScrolled = window.scrollY > 10;
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
     };
 
-    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up event listener
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

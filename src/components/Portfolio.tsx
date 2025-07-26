@@ -1,13 +1,7 @@
-// import { useState } from "react";
 import { Link } from "react-router";
 import "../styles/Portfolio.css";
 
 function Portfolio() {
-  // Categories for portfolio filtering
-  // const categories = ["React", "Google Maps", "Mapbox", "33", "ZingChart"];
-  // const [activeCategory, setActiveCategory] = useState("All");
-
-  // Sample portfolio items - replace with your actual projects
   const portfolioItems = [
     {
       id: 1,
@@ -67,12 +61,6 @@ function Portfolio() {
     },
   ];
 
-  // Filter items based on active category
-  // const filteredItems =
-  //   activeCategory === "All"
-  //     ? portfolioItems
-  //     : portfolioItems.filter((item) => item.category === activeCategory);
-
   return (
     <div className="portfolio-wrapper">
       <div className="portfolio-content">
@@ -81,21 +69,6 @@ function Portfolio() {
           Explore our recent projects showcasing innovative digital solutions
           that drive business growth and enhance user experiences.
         </p>
-
-        {/* <div className="portfolio-filter">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`filter-btn ${
-                activeCategory === category ? "active" : ""
-              }`}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
-        </div> */}
-
         <div className="portfolio-flex-container">
           {portfolioItems.map((item) => (
             <div className="portfolio-item" key={item.id}>
