@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import { FeatureCollection } from "geojson";
 import { GeometryObject } from "topojson-specification";
-import "../styles/LifeExpectancy.css"; // Import your CSS file for styling
+import "../styles/LifeExpectancy.css";
 
 function Legend(
   color: any,
@@ -479,7 +479,10 @@ function LifeExpectancy() {
       .selectAll("path")
       .data(countries.features)
       .join("path")
-      .attr("fill", (d) => color(valuemap.get(d.properties?.name) || 0))
+      .attr("fill", (d) => {
+        const value = valuemap.get(d.properties?.name);
+        return value != null ? color(value) : "#ccc"; // grey fallback
+      })
       .attr("d", path)
       .append("title")
       .text(
