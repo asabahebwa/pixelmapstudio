@@ -1,73 +1,12 @@
 import { useEffect, useState } from "react";
+import MyComponent from "./MyComponent";
+import PoiMarkers from "./PoiMarkers";
+import { locations } from "../data/locations";
 import "../styles/LocationMaps.css";
 
-import {
-  APIProvider,
-  Map,
-  useMap,
-  AdvancedMarker,
-  useAdvancedMarkerRef,
-} from "@vis.gl/react-google-maps";
+import { APIProvider, Map } from "@vis.gl/react-google-maps";
 
-const MyComponent = () => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!map) return;
-
-    if (map) {
-      // Use the map instance (e.g., map.panTo(), map.setZoom())
-
-      map.setZoom(3);
-    }
-  }, [map]);
-
-  return null;
-};
-
-type CustomLocationsInfoWindowProps = {
-  poi: Poi;
-  getTempColor: (temp: number) => string;
-};
-
-const CustomLocationsInfoWindow = ({
-  poi,
-  getTempColor,
-}: CustomLocationsInfoWindowProps) => {
-  const [markerRef] = useAdvancedMarkerRef();
-
-  return (
-    <>
-      <AdvancedMarker
-        position={{ lat: poi.location.lat, lng: poi.location.lng }}
-        ref={markerRef}
-      >
-        <div
-          className="info-window"
-          style={{
-            position: "absolute",
-            left: 15 /* Position to the right */,
-            top: -16,
-            background: "white",
-          }}
-        >
-          <div className="info-window-location">{poi.key}</div>
-          <div className="info-window-temp">
-            <div className="info-window-temp-value">{Math.trunc(poi.temp)}</div>
-            <div
-              className="info-window-temp-color"
-              style={{
-                backgroundColor: getTempColor(Math.trunc(poi.temp)),
-              }}
-            />
-          </div>
-        </div>
-      </AdvancedMarker>
-    </>
-  );
-};
-
-type Poi = {
+export interface Poi {
   key: string;
   temp: number;
   rainfall: number;
@@ -75,276 +14,12 @@ type Poi = {
     lat: number;
     lng: number;
   };
-  visible?: boolean; // Optional visibility property
-};
+  visible?: boolean;
+}
 
 const Maps = () => {
   const [zoom, setZoom] = useState<number>(3);
   const [loading, setLoading] = useState<boolean>(true);
-
-  const locations = [
-    {
-      key: "San Francisco",
-      temp: 13,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 37.775,
-        lng: -122.418,
-      },
-    },
-    {
-      key: "Nairobi",
-      temp: 22,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: -1.283,
-        lng: 36.817,
-      },
-    },
-    {
-      key: "Doha",
-      temp: 33,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 25.287,
-        lng: 51.533,
-      },
-    },
-    {
-      key: "Moscow",
-      temp: 6,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 55.752,
-        lng: 37.616,
-      },
-    },
-    {
-      key: "New York",
-      temp: 24,
-      rainfall: 2500, // Annual rainfall in mm
-      location: {
-        lat: 40.712776,
-        lng: -74.005974,
-      },
-    },
-    {
-      key: "San Paulo",
-      temp: 25,
-      rainfall: 250, // Annual rainfall in mm
-      location: {
-        lat: -23.533,
-        lng: -46.617,
-      },
-    },
-    {
-      key: "Rome",
-      temp: 23,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 41.9,
-        lng: 12.483,
-      },
-    },
-    {
-      key: "Madrid",
-      temp: 19,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 40.4,
-        lng: -3.683,
-      },
-    },
-    {
-      key: "Kyiv",
-      temp: 13,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 50.433,
-        lng: 30.517,
-      },
-    },
-    {
-      key: "Berlin",
-      temp: 15,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 52.517,
-        lng: 13.4,
-      },
-    },
-    {
-      key: "Cairo",
-      temp: 40,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 30.05,
-        lng: 31.25,
-      },
-    },
-    {
-      key: "Lagos",
-      temp: 30,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 6.453,
-        lng: 3.396,
-      },
-    },
-    {
-      key: "Rabat",
-      temp: 20,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 34.025,
-        lng: -6.836,
-      },
-    },
-    {
-      key: "Beijing",
-      temp: 30,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 39.929,
-        lng: 116.388,
-      },
-    },
-    {
-      key: "New Delhi",
-      temp: 40,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 28.6,
-        lng: 77.2,
-      },
-    },
-    {
-      key: "Seoul",
-      temp: 21,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 37.566,
-        lng: 127,
-      },
-    },
-    {
-      key: "Cape Town",
-      temp: 16,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: -33.917,
-        lng: 18.417,
-      },
-    },
-    {
-      key: "Miami",
-      temp: 27,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 25.774,
-        lng: -80.194,
-      },
-    },
-    {
-      key: "Vancouver",
-      temp: 14,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 49.25,
-        lng: -123.133,
-      },
-    },
-    {
-      key: "Anchorage",
-      temp: 8,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 61.218,
-        lng: -149.9,
-      },
-    },
-    {
-      key: "Yellowknife",
-      temp: 0,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 62.45,
-        lng: -114.35,
-      },
-    },
-    {
-      key: "Nuuk",
-      temp: -5,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 64.183,
-        lng: -51.75,
-      },
-    },
-    {
-      key: "Qaarsut",
-      temp: -10,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 70.733,
-        lng: -52.65,
-      },
-    },
-    {
-      key: "Bogota",
-      temp: 17,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 4.6,
-        lng: -74.083,
-      },
-    },
-    {
-      key: "Sydney",
-      temp: 20,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: -33.883,
-        lng: 151.217,
-      },
-    },
-    {
-      key: "Darwin",
-      temp: 30,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: -12.467,
-        lng: 130.833,
-      },
-    },
-    {
-      key: "Auckland",
-      temp: 18,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: -36.867,
-        lng: 174.767,
-      },
-    },
-    {
-      key: "Manila",
-      temp: 33,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 14.604,
-        lng: 120.982,
-      },
-    },
-    {
-      key: "Murmansk",
-      temp: 6,
-      rainfall: 25, // Annual rainfall in mm
-      location: {
-        lat: 68.967,
-        lng: 33.083,
-      },
-    },
-  ];
 
   const getZoomThreshold = (customId: string) => {
     let zoomThreshold;
@@ -526,14 +201,15 @@ const Maps = () => {
           defaultCenter={{ lat: 20, lng: 0 }} // Add a default center
           minZoom={2}
           maxZoom={20}
-          // defaultOptions={{
-          //   zoomControl: false,
-          //   scrollwheel: false,
-          // }}
-          // options={{
-          //   minZoom: 2,
-          //   maxZoom: 20,
-          // }}
+          // @ts-ignore-next-line
+          defaultOptions={{
+            zoomControl: false,
+            scrollwheel: false,
+          }}
+          options={{
+            minZoom: 2,
+            maxZoom: 20,
+          }}
         >
           <MyComponent />
 
@@ -546,74 +222,6 @@ const Maps = () => {
         </Map>
       </APIProvider>
     </div>
-  );
-};
-
-// Create a separate component for each marker
-
-type LocationsPoiMarkerProps = {
-  key?: number;
-  poi: Poi;
-  getTempColor: (temp: number) => string;
-  visible?: boolean;
-};
-const LocationsPoiMarker = ({
-  poi,
-  getTempColor,
-  visible,
-}: LocationsPoiMarkerProps) => {
-  const [markerRef, marker] = useAdvancedMarkerRef();
-
-  let isVisible = visible;
-
-  return isVisible ? (
-    <>
-      <AdvancedMarker
-        position={{
-          lat: poi.location.lat,
-          lng: poi.location.lng,
-        }}
-        ref={markerRef}
-      >
-        <div
-          style={{
-            width: 10,
-            height: 10,
-            position: "absolute",
-            top: 0,
-            left: 0,
-            background: "#ffffff",
-            transform: "translate(-50%, -50%)",
-          }}
-        ></div>
-      </AdvancedMarker>
-      {marker && (
-        <CustomLocationsInfoWindow poi={poi} getTempColor={getTempColor} />
-      )}
-    </>
-  ) : null;
-};
-
-type PoiMarkersProps = {
-  locations: Poi[];
-  getTempColor: (temp: number) => string;
-};
-
-const PoiMarkers = ({ locations, getTempColor }: PoiMarkersProps) => {
-  return (
-    <>
-      {locations.map((poi, index) => {
-        // Create a new marker reference for each location
-        return (
-          <LocationsPoiMarker
-            key={index}
-            poi={poi}
-            getTempColor={getTempColor}
-            visible={poi.visible}
-          />
-        );
-      })}
-    </>
   );
 };
 
