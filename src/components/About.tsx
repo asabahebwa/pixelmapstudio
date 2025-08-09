@@ -45,11 +45,14 @@ function About() {
         data, goals, and audience. We take a collaborative, iterative
         approach—working closely with clients to define the problem, clarify the
         story, and design solutions that are both visually compelling and
-        functionally effective. From initial research and data wrangling to
-        prototyping and final deployment, we prioritize clarity, usability, and
-        performance. Using agile workflows and modern development tools, we
-        ensure that each visualization is not only accurate and engaging but
-        also tailored to fit seamlessly within your digital ecosystem.
+        functionally effective.
+      </p>
+      <p className="second-paragraph">
+        From initial research and data wrangling to prototyping and final
+        deployment, we prioritize clarity, usability, and performance. Using
+        agile workflows and modern development tools, we ensure that each
+        visualization is not only accurate and engaging but also tailored to fit
+        seamlessly within your digital ecosystem.
       </p>
       <h1 className="about-heading">Meet the founder</h1>
       <p className="founder">
