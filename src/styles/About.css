@@ -9,9 +9,10 @@
 }
 
 .about-heading {
-  font-size: 30px;
-  margin-top: 2rem;
+  font-size: 24px;
+  font-weight: 300;
   color: #293340;
+  margin-top: 2rem;
 }
 
 .second-paragraph {
@@ -19,7 +20,7 @@
 }
 
 .first-paragraph {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 .founder {
   color: #293340;

@@ -206,12 +206,11 @@
 }
 
 @media (max-width: 800px) {
-
   .services-hero-container {
     height: 480px;
   }
 
-  .contact-button{
+  .contact-button {
     margin-top: 2rem;
   }
   .services-hero-title {
