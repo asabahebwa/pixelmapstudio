@@ -51,8 +51,8 @@ PixelMap creates real-world impact by:
 
 Interested in collaborating or learning more? Let’s connect!
 
-- Email: [lasabahebwa@gmail.com] _(replace with your real email)_
-- LinkedIn: [https://www.linkedin.com/in/livingstone-asabahebwa-290594108/] _(optional)_
+- Email: [lasabahebwa@gmail.com]
+- LinkedIn: [https://www.linkedin.com/in/livingstone-asabahebwa-290594108/]
 
 ---
 
